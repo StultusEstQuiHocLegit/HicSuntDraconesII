@@ -4,49 +4,6 @@ let animals = {};
 let ipdk = {};
 let currentStory = {};
 
-// Manage story history in localStorage (max 20 entries)
-function getStoryHistory() {
-    try {
-        return JSON.parse(localStorage.getItem('storyHistory')) || [];
-    } catch (e) {
-        return [];
-    }
-}
-
-function addToHistory(text) {
-    const history = getStoryHistory();
-    history.push(text);
-    if (history.length > 20) {
-        history.shift();
-    }
-    localStorage.setItem('storyHistory', JSON.stringify(history));
-}
-
-// Request new story content from the server using OpenAI
-async function generateAIText() {
-    try {
-        const history = getStoryHistory();
-        const formData = new URLSearchParams();
-        formData.append('history', JSON.stringify(history));
-
-        const response = await fetch('openai.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: formData.toString()
-        });
-        const data = await response.json();
-        if (data.choices && data.choices[0] && data.choices[0].message) {
-            currentStory = JSON.parse(data.choices[0].message.content);
-            window.currentChapter = 'ai';
-            displayStoryContent();
-        } else if (data.error) {
-            console.error('AI Error:', data.error);
-        }
-    } catch (error) {
-        console.error('AI request failed:', error);
-    }
-}
-
 // Load translations for the current language
 async function loadTranslations() {
     try {
@@ -370,7 +327,6 @@ function displayStoryContent() {
     }
     
     storyDiv.innerHTML = storyHTML;
-    addToHistory(storyData.text);
     displayStoryContentWithAnimation();
 
     // Display options
@@ -607,9 +563,9 @@ function handleStoryChoice(choiceIndex) {
             loadStoryContent(next);
         }
     } else {
-        // No predefined path - generate a new adventure section with AI
-        showGameMessage("Your choice forges a new path...");
-        generateAIText();
+        // Default action - show a message and stay on same chapter
+        showGameMessage("Your choice echoes through the realm...");
+        setTimeout(() => loadStoryContent(currentChapter), 1500);
     }
 }
 
