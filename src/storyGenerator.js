@@ -1,5 +1,5 @@
 // Placeholder for OpenAI API key
-const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = 'PLACEHOLDERTODEFINEAPIKEYHERE';
 
 // Hardcoded JSON examples (replace with your actual JSON content)
 const chapter1 = {
