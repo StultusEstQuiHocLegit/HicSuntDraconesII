@@ -41,9 +41,11 @@ async function generateAIText() {
             displayStoryContent();
         } else if (data.error) {
             console.error('AI Error:', data.error);
+            showGameMessage('AI Error: ' + data.error);
         }
     } catch (error) {
         console.error('AI request failed:', error);
+        showGameMessage('AI request failed');
     }
 }
 

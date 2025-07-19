@@ -1,10 +1,18 @@
 <?php
 require_once __DIR__ . '/config.php';
 
+$apiKey = OPENAI_API_KEY ?? '';
+if (!$apiKey || stripos($apiKey, 'REPLACETHIS') !== false) {
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'OpenAI API key not configured. Update config.php']);
+    exit;
+}
+
 $history = json_decode($_POST['history'] ?? '[]', true);
 
 $examples = [];
-foreach (glob(__DIR__.'/texts/*.json') as $file) {
+$exampleFiles = array_slice(glob(__DIR__.'/texts/*.json'), 0, 5);
+foreach ($exampleFiles as $file) {
     $examples[basename($file)] = json_decode(file_get_contents($file), true);
 }
 
@@ -34,12 +42,16 @@ curl_setopt_array($ch, [
 ]);
 
 $response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 $error = curl_error($ch);
 curl_close($ch);
 
 header('Content-Type: application/json');
-if ($error) {
-    echo json_encode(['error' => $error]);
+if ($error || $httpCode >= 400) {
+    echo json_encode([
+        'error' => $error ?: ('HTTP ' . $httpCode),
+        'http_code' => $httpCode
+    ]);
 } else {
     echo $response;
 }
