@@ -111,5 +111,37 @@ if ($_POST && isset($_POST['action'])) {
         window.inventory = <?php echo json_encode($inventory); ?>;
         window.playerGold = <?php echo $gold; ?>;
     </script>
+    <!-- Loading spinner HTML goes here, just before </body> -->
+    <div id="loading-spinner" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;">
+    <div class="jumping-dots">
+      <span></span><span></span><span></span>
+    </div>
+    </div>
+    <style>
+        .jumping-dots {
+          display: flex;
+          gap: 8px;
+          align-items: flex-end;
+          height: 40px;
+        }
+        .jumping-dots span {
+          display: inline-block;
+          width: 14px;
+          height: 14px;
+          background: #3498db;
+          border-radius: 50%;
+          animation: jump 1.2s infinite;
+        }
+        .jumping-dots span:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+        .jumping-dots span:nth-child(3) {
+          animation-delay: 0.4s;
+        }
+        @keyframes jump {
+          0%, 100% { transform: translateY(0);}
+          50% { transform: translateY(-18px);}
+        }
+    </style>
 </body>
 </html>
