@@ -1,0 +1,212 @@
+{
+    "wolf": {
+        "emoji": "🐺",
+        "names": {
+            "english": "Wolf",
+            "spanish": "Lobo",
+            "french": "Loup"
+        },
+        "stats": {
+            "speed": 4,
+            "life": 4,
+            "attack": 4,
+            "defense": 3,
+            "inventory": 5
+        }
+    },
+    "bear": {
+        "emoji": "🐻",
+        "names": {
+            "english": "Bear",
+            "spanish": "Oso",
+            "french": "Ours"
+        },
+        "stats": {
+            "speed": 2,
+            "life": 5,
+            "attack": 5,
+            "defense": 5,
+            "inventory": 7
+        }
+    },
+    "rabbit": {
+        "emoji": "🐰",
+        "names": {
+            "english": "Rabbit",
+            "spanish": "Conejo",
+            "french": "Lapin"
+        },
+        "stats": {
+            "speed": 5,
+            "life": 3,
+            "attack": 1,
+            "defense": 1,
+            "inventory": 3
+        }
+    },
+    "fox": {
+        "emoji": "🦊",
+        "names": {
+            "english": "Fox",
+            "spanish": "Zorro",
+            "french": "Renard"
+        },
+        "stats": {
+            "speed": 4,
+            "life": 3,
+            "attack": 3,
+            "defense": 2,
+            "inventory": 4
+        }
+    },
+    "eagle": {
+        "emoji": "🦅",
+        "names": {
+            "english": "Eagle",
+            "spanish": "Águila",
+            "french": "Aigle"
+        },
+        "stats": {
+            "speed": 5,
+            "life": 3,
+            "attack": 4,
+            "defense": 2,
+            "inventory": 3
+        }
+    },
+    "turtle": {
+        "emoji": "🐢",
+        "names": {
+            "english": "Turtle",
+            "spanish": "Tortuga",
+            "french": "Tortue"
+        },
+        "stats": {
+            "speed": 1,
+            "life": 5,
+            "attack": 1,
+            "defense": 5,
+            "inventory": 6
+        }
+    },
+    "lion": {
+        "emoji": "🦁",
+        "names": {
+            "english": "Lion",
+            "spanish": "León",
+            "french": "Lion"
+        },
+        "stats": {
+            "speed": 3,
+            "life": 4,
+            "attack": 5,
+            "defense": 4,
+            "inventory": 6
+        }
+    },
+    "deer": {
+        "emoji": "🦌",
+        "names": {
+            "english": "Deer",
+            "spanish": "Ciervo",
+            "french": "Cerf"
+        },
+        "stats": {
+            "speed": 5,
+            "life": 3,
+            "attack": 2,
+            "defense": 2,
+            "inventory": 4
+        }
+    },
+    "ant": {
+        "emoji": "🐜",
+        "names": {
+            "english": "Ant",
+            "spanish": "Hormiga",
+            "french": "Fourmi"
+        },
+        "stats": {
+            "speed": 3,
+            "life": 3,
+            "attack": 1,
+            "defense": 1,
+            "inventory": 8
+        }
+    },
+    "owl": {
+        "emoji": "🦉",
+        "names": {
+            "english": "Owl",
+            "spanish": "Búho",
+            "french": "Hibou"
+        },
+        "stats": {
+            "speed": 3,
+            "life": 3,
+            "attack": 3,
+            "defense": 3,
+            "inventory": 4
+        }
+    },
+    "snake": {
+        "emoji": "🐍",
+        "names": {
+            "english": "Snake",
+            "spanish": "Serpiente",
+            "french": "Serpent"
+        },
+        "stats": {
+            "speed": 3,
+            "life": 3,
+            "attack": 4,
+            "defense": 2,
+            "inventory": 3
+        }
+    },
+    "cat": {
+        "emoji": "🐱",
+        "names": {
+            "english": "Cat",
+            "spanish": "Gato",
+            "french": "Chat"
+        },
+        "stats": {
+            "speed": 4,
+            "life": 3,
+            "attack": 2,
+            "defense": 2,
+            "inventory": 4
+        }
+    },
+    "frog": {
+        "emoji": "🐸",
+        "names": {
+            "english": "Frog",
+            "spanish": "Rana",
+            "french": "Grenouille"
+        },
+        "stats": {
+            "speed": 2,
+            "life": 3,
+            "attack": 1,
+            "defense": 1,
+            "inventory": 3
+        }
+    },
+    "wolf": {
+        "emoji": "🐺",
+        "names": {
+            "english": "Wolf",
+            "spanish": "Lobo",
+            "french": "Loup"
+        },
+        "stats": {
+            "speed": 6,
+            "life": 5,
+            "attack": 4,
+            "defense": 3,
+            "inventory": 2
+        }
+    }
+}
