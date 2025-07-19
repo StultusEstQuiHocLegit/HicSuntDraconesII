@@ -4,6 +4,25 @@ let animals = {};
 let ipdk = {};
 let currentStory = {};
 
+// Read window variables set by PHP
+const currentLanguage = window.currentLanguage;
+const playerAnimal = window.playerAnimal;
+const playerFaction = window.playerFaction;
+const inventory = window.inventory;
+const playerGold = window.playerGold;
+
+document.addEventListener('DOMContentLoaded', async function() {
+    await loadAnimalsForGame();
+    await loadItems();
+    loadTranslations();
+    loadStoryContent();
+    setupKeyboardNavigation();
+    setupInventory();
+    createDropZone();
+});
+
+import { generateStory } from '../src/storyGenerator.js';
+
 // Load translations for the current language
 async function loadTranslations() {
     try {
@@ -263,16 +282,16 @@ function changeLanguage(newLanguage) {
 }
 
 // Load story content
-async function loadStoryContent(storyFile = 'intro') {
+async function loadStoryContent(userInput = 'intro') {
     try {
-        const response = await fetch(`texts/${storyFile}.json`);
-        currentStory = await response.json();
-        window.currentChapter = storyFile;
+        // Use the OpenAI-based generator instead of fetching a static file
+        const aiStory = await generateStory(userInput);
+        currentStory = { [window.currentLanguage]: { text: aiStory, options: ["Continue..."] } }; // You may want to parse options from AI
+        window.currentChapter = userInput;
         displayStoryContent();
     } catch (error) {
-        console.error('Error loading story content:', error);
-        // Fallback to intro if chapter doesn't exist
-        if (storyFile !== 'intro') {
+        console.error('Error generating story content:', error);
+        if (userInput !== 'intro') {
             loadStoryContent('intro');
         }
     }
