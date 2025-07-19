@@ -281,12 +281,32 @@ function changeLanguage(newLanguage) {
     location.reload();
 }
 
+function showLoading() {
+    let spinner = document.getElementById('loading-spinner');
+    if (!spinner) {
+        spinner = document.createElement('div');
+        spinner.id = 'loading-spinner';
+        spinner.style = 'display:flex;align-items:center;justify-content:center;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.7);z-index:9999;';
+        spinner.innerHTML = `<div style="border:8px solid #f3f3f3;border-top:8px solid #3498db;border-radius:50%;width:60px;height:60px;animation:spin 1s linear infinite;"></div>
+        <style>@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}</style>`;
+        document.body.appendChild(spinner);
+    }
+    spinner.style.display = 'flex';
+}
+
+function hideLoading() {
+    const spinner = document.getElementById('loading-spinner');
+    if (spinner) spinner.style.display = 'none';
+}
+
 // Load story content
 async function loadStoryContent(userInput = 'intro') {
+    // Show loading spinner
+    showLoading();
     try {
         // Use the OpenAI-based generator instead of fetching a static file
         const aiStory = await generateStory(userInput);
-        currentStory = { [window.currentLanguage]: { text: aiStory, options: ["Continue..."] } }; // You may want to parse options from AI
+        currentStory = aiStory;
         window.currentChapter = userInput;
         displayStoryContent();
     } catch (error) {
@@ -294,6 +314,9 @@ async function loadStoryContent(userInput = 'intro') {
         if (userInput !== 'intro') {
             loadStoryContent('intro');
         }
+    } finally {
+        // Hide loading spinner
+        hideLoading();
     }
 }
 
