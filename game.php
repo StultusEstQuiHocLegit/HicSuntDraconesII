@@ -63,7 +63,7 @@ if ($_POST && isset($_POST['action'])) {
     <!-- Top Navigation -->
     <nav class="top-nav">
         <div class="nav-left">
-            <a href="menu.php" class="nav-icon" title="Settings">
+            <a id="settingsLink" href="menu.php" class="nav-icon" title="Settings" data-tooltip="settings_tooltip">
                 <div class="icon-circle">⚙️</div>
             </a>
         </div>
@@ -91,7 +91,7 @@ if ($_POST && isset($_POST['action'])) {
     <!-- Bottom UI -->
     <footer class="game-footer">
         <div class="footer-left">
-            <a href="mailto:hi@tramann-projects.com" class="nav-icon" title="Feedback">
+            <a id="feedbackLink" href="mailto:hi@tramann-projects.com" class="nav-icon" title="Feedback" data-tooltip="feedback_tooltip">
                 <div class="icon-circle">✉️</div>
             </a>
         </div>
@@ -114,6 +114,7 @@ if ($_POST && isset($_POST['action'])) {
         document.addEventListener('DOMContentLoaded', async function() {
             // Load animals data first
             await loadAnimalsForGame();
+            await loadItems();
             
             loadTranslations();
             loadStoryContent();

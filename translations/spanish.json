@@ -19,6 +19,8 @@
     "faction_settings": "Configuración de facción",
     "save_settings": "Guardar configuración",
     "reset_character": "Reiniciar personaje",
+    "settings_tooltip": "Configuración (Settings)",
+    "feedback_tooltip": "Comentarios (Feedback)",
     "inventory": "Inventario",
     "speed": "Velocidad",
     "life": "Vida",
