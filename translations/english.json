@@ -19,6 +19,8 @@
     "faction_settings": "Faction Settings",
     "save_settings": "Save Settings",
     "reset_character": "Reset Character",
+    "settings_tooltip": "Settings",
+    "feedback_tooltip": "Feedback",
     "inventory": "Inventory",
     "speed": "Speed",
     "life": "Life",

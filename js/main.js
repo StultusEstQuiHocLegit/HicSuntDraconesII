@@ -1,6 +1,7 @@
 // Global variables
 let translations = {};
 let animals = {};
+let ipdk = {};
 let currentStory = {};
 
 // Load translations for the current language
@@ -23,6 +24,14 @@ function updateTranslations() {
             element.textContent = translations[key];
         }
     });
+
+    const tooltipElements = document.querySelectorAll('[data-tooltip]');
+    tooltipElements.forEach(element => {
+        const key = element.getAttribute('data-tooltip');
+        if (translations[key]) {
+            element.setAttribute('title', translations[key]);
+        }
+    });
 }
 
 // Load animal data
@@ -43,6 +52,16 @@ async function loadAnimalsForGame() {
         animals = await response.json();
     } catch (error) {
         console.error('Error loading animals:', error);
+    }
+}
+
+// Load item data
+async function loadItems() {
+    try {
+        const response = await fetch('resources/items.json');
+        ipdk = await response.json();
+    } catch (error) {
+        console.error('Error loading items:', error);
     }
 }
 
@@ -527,8 +546,9 @@ function handleStoryChoice(choiceIndex) {
 
 // Add random item to inventory
 function addRandomItem() {
-    const randomItems = ['🗝️', '💎', '🌟', '🍄', '📜', '🔮', '⚡', '🌿'];
-    const randomItem = randomItems[Math.floor(Math.random() * randomItems.length)];
+    const items = Object.keys(ipdk);
+    if (items.length === 0) return;
+    const randomItem = items[Math.floor(Math.random() * items.length)];
     addItem(randomItem);
 }
 
@@ -611,72 +631,8 @@ function createItemTooltip(item) {
     const tooltip = document.createElement('div');
     tooltip.className = 'inventory-tooltip';
     
-    // Define item descriptions in different languages
-    const itemDescriptions = {
-        '🗝️': {
-            spanish: 'Llave antigua',
-            french: 'Clé ancienne',
-            english: 'Ancient key'
-        },
-        '💎': {
-            spanish: 'Diamante precioso',
-            french: 'Diamant précieux', 
-            english: 'Precious diamond'
-        },
-        '🌟': {
-            spanish: 'Estrella mágica',
-            french: 'Étoile magique',
-            english: 'Magic star'
-        },
-        '🍄': {
-            spanish: 'Hongo místico',
-            french: 'Champignon mystique',
-            english: 'Mystic mushroom'
-        },
-        '📜': {
-            spanish: 'Pergamino sagrado',
-            french: 'Parchemin sacré',
-            english: 'Sacred scroll'
-        },
-        '🔮': {
-            spanish: 'Orbe de cristal',
-            french: 'Orbe de cristal',
-            english: 'Crystal orb'
-        },
-        '⚡': {
-            spanish: 'Rayo de poder',
-            french: 'Éclair de pouvoir',
-            english: 'Lightning bolt'
-        },
-        '🌿': {
-            spanish: 'Hierba curativa',
-            french: 'Herbe curative',
-            english: 'Healing herb'
-        },
-        '⚔️': {
-            spanish: 'Espada de acero',
-            french: 'Épée d\'acier',
-            english: 'Steel sword'
-        },
-        '🛡️': {
-            spanish: 'Escudo de hierro',
-            french: 'Bouclier de fer',
-            english: 'Iron shield'
-        },
-        '🧿': {
-            spanish: 'Amuleto protector',
-            french: 'Amulette protectrice',
-            english: 'Protective amulet'
-        },
-        '❤️': {
-            spanish: 'Corazón de vida',
-            french: 'Cœur de vie',
-            english: 'Heart of life'
-        }
-    };
-    
     const currentLang = window.currentLanguage || 'spanish';
-    const description = itemDescriptions[item];
+    const description = ipdk[item];
     
     if (description) {
         const localName = description[currentLang] || description.spanish;
@@ -1028,11 +984,11 @@ function displayTradingInterface(storyData) {
     const optionsDiv = document.getElementById('gameOptions');
     
     const shopItems = [
-        { emoji: '⚔️', name: 'Sword', basePrice: 15 },
-        { emoji: '🛡️', name: 'Shield', basePrice: 12 },
-        { emoji: '🧿', name: 'Amulet', basePrice: 8 },
-        { emoji: '🔮', name: 'Crystal', basePrice: 20 },
-        { emoji: '📜', name: 'Scroll', basePrice: 5 }
+        { emoji: '⚔️', basePrice: 15 },
+        { emoji: '🛡️', basePrice: 12 },
+        { emoji: '🧿', basePrice: 8 },
+        { emoji: '🔮', basePrice: 20 },
+        { emoji: '📜', basePrice: 5 }
     ];
     
     // Random selection of 3-5 items with price variations
@@ -1041,6 +997,7 @@ function displayTradingInterface(storyData) {
         .slice(0, 3 + Math.floor(Math.random() * 3))
         .map(item => ({
             ...item,
+            name: ipdk[item.emoji] ? (ipdk[item.emoji][window.currentLanguage] || ipdk[item.emoji].english) : '',
             price: Math.max(1, item.basePrice + Math.floor(Math.random() * 5) - 2)
         }));
     
