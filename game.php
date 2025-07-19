@@ -103,25 +103,13 @@ if ($_POST && isset($_POST['action'])) {
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
     <script>
         window.currentLanguage = '<?php echo $language; ?>';
         window.playerAnimal = '<?php echo $animal; ?>';
         window.playerFaction = '<?php echo $faction; ?>';
         window.inventory = <?php echo json_encode($inventory); ?>;
         window.playerGold = <?php echo $gold; ?>;
-        
-        document.addEventListener('DOMContentLoaded', async function() {
-            // Load animals data first
-            await loadAnimalsForGame();
-            await loadItems();
-            
-            loadTranslations();
-            loadStoryContent();
-            setupKeyboardNavigation();
-            setupInventory();
-            createDropZone();
-        });
     </script>
 </body>
 </html>
