@@ -1,0 +1,32 @@
+{
+    "spanish": {
+        "type": "minigame",
+        "game_type": "memory",
+        "text": "You enter una mysterious library where books float en el air. The librarian ghost challenges you: 'Match the Spanish words with their English meanings para unlock the secret knowledge!'",
+        "pairs": [
+            {"spanish": "casa", "english": "house"},
+            {"spanish": "agua", "english": "water"}, 
+            {"spanish": "fuego", "english": "fire"},
+            {"spanish": "tiempo", "english": "time"},
+            {"spanish": "corazón", "english": "heart"},
+            {"spanish": "aventura", "english": "adventure"}
+        ],
+        "success": "¡Excelente! The ghost is impressed. 'Take this ancient tome para your studies!'",
+        "failure": "The ghost sighs. 'Study more, young scholar. Come back cuando you're ready.'"
+    },
+    "french": {
+        "type": "minigame",
+        "game_type": "memory",
+        "text": "Vous entrez dans une mysterious bibliothèque où books float dans l'air. Le librarian ghost vous challenge: 'Match les French words avec leurs English meanings pour unlock le secret knowledge!'",
+        "pairs": [
+            {"french": "maison", "english": "house"},
+            {"french": "eau", "english": "water"},
+            {"french": "feu", "english": "fire"}, 
+            {"french": "temps", "english": "time"},
+            {"french": "cœur", "english": "heart"},
+            {"french": "aventure", "english": "adventure"}
+        ],
+        "success": "Excellent! Le ghost est impressed. 'Prenez ce ancient tome pour vos études!'",
+        "failure": "Le ghost soupire. 'Étudiez plus, young scholar. Revenez quand vous êtes ready.'"
+    }
+}

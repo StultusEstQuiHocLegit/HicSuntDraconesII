@@ -1,0 +1,20 @@
+{
+    "spanish": {
+        "type": "puzzle",
+        "puzzle_type": "riddle",
+        "text": "An ancient guardian blocks your path. The stone golem speaks in riddles: 'Tengo llaves pero no locks, space pero no room, you can enter pero no go outside. ¿Qué soy?' You must answer correctly to pass.",
+        "answer": "keyboard",
+        "hint": "Think about something you use para escribir...",
+        "success": "¡Correcto! The golem steps aside, impressed by tu wisdom. You may pass safely.",
+        "failure": "The golem shakes su head. 'Try again, pequeño adventurer.'"
+    },
+    "french": {
+        "type": "puzzle",
+        "puzzle_type": "riddle", 
+        "text": "Un ancient guardian bloque votre path. Le stone golem parle en riddles: 'J'ai des clés mais pas de locks, space mais pas de room, you can enter mais pas go outside. Qu'est-ce que je suis?' Vous devez answer correctly pour passer.",
+        "answer": "keyboard",
+        "hint": "Pensez à quelque chose que vous utilisez pour écrire...",
+        "success": "Correct! Le golem s'écarte, impressionné par votre wisdom. Vous pouvez passer safely.",
+        "failure": "Le golem secoue sa tête. 'Essayez encore, petit adventurer.'"
+    }
+}

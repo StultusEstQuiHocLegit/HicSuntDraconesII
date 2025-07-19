@@ -1,0 +1,56 @@
+{
+    "spanish": {
+        "type": "crafting",
+        "text": "You discover an ancient forge still glowing con magical fire. The spirit del blacksmith appears: 'Welcome, traveler! I can help you crear powerful items if you have the right materials. What would you like to craft?'",
+        "recipes": [
+            {
+                "name": "Healing Potion",
+                "name_local": "Poción Curativa", 
+                "ingredients": ["🌿", "💧"],
+                "result": "🧪",
+                "description": "Restores health durante battle"
+            },
+            {
+                "name": "Magic Sword",
+                "name_local": "Espada Mágica",
+                "ingredients": ["⚔️", "🌟"],
+                "result": "🗡️",
+                "description": "Increases attack power significantly"
+            },
+            {
+                "name": "Protection Amulet", 
+                "name_local": "Amuleto Protector",
+                "ingredients": ["🧿", "💎"],
+                "result": "🛡️",
+                "description": "Reduces incoming damage"
+            }
+        ]
+    },
+    "french": {
+        "type": "crafting",
+        "text": "Vous découvrez une ancient forge encore glowing avec magical fire. L'esprit du blacksmith appears: 'Bienvenue, traveler! Je peux vous aider à créer powerful items si vous avez les right matériaux. Que voulez-vous craft?'",
+        "recipes": [
+            {
+                "name": "Healing Potion",
+                "name_local": "Potion Curative",
+                "ingredients": ["🌿", "💧"], 
+                "result": "🧪",
+                "description": "Restore la santé pendant battle"
+            },
+            {
+                "name": "Magic Sword",
+                "name_local": "Épée Magique",
+                "ingredients": ["⚔️", "🌟"],
+                "result": "🗡️", 
+                "description": "Augmente attack power significativement"
+            },
+            {
+                "name": "Protection Amulet",
+                "name_local": "Amulette Protectrice",
+                "ingredients": ["🧿", "💎"],
+                "result": "🛡️",
+                "description": "Réduit incoming damage"
+            }
+        ]
+    }
+}

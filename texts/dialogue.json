@@ -1,0 +1,42 @@
+{
+    "spanish": {
+        "type": "dialogue",
+        "character": "Wise Elder",
+        "character_emoji": "🧙‍♂️",
+        "text": "Greetings, young adventurer! I am el ancient Elder of this village. Many travelers pasan por aquí, but few have the courage to face what lies ahead. Tell me, ¿por qué do you journey through these dangerous lands?",
+        "responses": [
+            {
+                "text": "Busco treasure y glory",
+                "response": "Ah, la greed drives many. But remember, true treasure is not always gold, pequeño one."
+            },
+            {
+                "text": "I want to help people en need",
+                "response": "Noble words! The world needs más heroes like you. Take this blessing para your journey."
+            },
+            {
+                "text": "I'm lost y need directions",
+                "response": "Honesty is refreshing! The path forward es dangerous, but I will give you a map."
+            }
+        ]
+    },
+    "french": {
+        "type": "dialogue",
+        "character": "Wise Elder",
+        "character_emoji": "🧙‍♂️", 
+        "text": "Salutations, jeune adventurer! Je suis l'ancient Elder de ce village. Many travelers passent par ici, mais few ont le courage de face what lies ahead. Dites-moi, pourquoi do you journey à travers ces dangerous lands?",
+        "responses": [
+            {
+                "text": "Je cherche treasure et glory", 
+                "response": "Ah, la greed pousse beaucoup. Mais remember, true treasure n'est pas toujours gold, petit one."
+            },
+            {
+                "text": "I want aider les gens en need",
+                "response": "Noble words! Le monde a besoin de plus heroes comme vous. Prenez cette blessing pour votre journey."
+            },
+            {
+                "text": "Je suis lost et need directions",
+                "response": "Honesty est refreshing! Le path en avant est dangerous, mais I will give you une map."
+            }
+        ]
+    }
+}

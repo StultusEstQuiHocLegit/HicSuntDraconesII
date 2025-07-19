@@ -1,0 +1,26 @@
+{
+    "spanish": {
+        "text": "Bienvenido al mundo de Hic Sunt Dracones. En este ancient reino, donde dragon y knight se encuentran en battle, tu adventure comienza en un small village cerca del dark forest. El wise anciano del village te ha encomendado una important quest: encontrar el legendary treasure escondido en la mysterious mountain. Pero cuidado, porque el path está lleno de danger y solo los brave pueden completar este perilous journey. Tu magic companion te ayudará, pero la choice final siempre será tuya.",
+        "options": [
+            "Explorar el dark forest",
+            "Dirigirse directamente a la mountain",
+            "Buscar más información en el village",
+            "Preparar equipment para el journey",
+            "Enter combat training",
+            "Visit the traveling trader",
+            "Try the memory training challenge"
+        ]
+    },
+    "french": {
+        "text": "Bienvenue dans le monde de Hic Sunt Dracones. Dans ce ancient royaume, où dragon et knight se rencontrent en battle, votre adventure commence dans un small village près de la dark forêt. Le wise ancien du village vous a confié une important quest: trouver le legendary treasure caché dans la mysterious mountain. Mais attention, car le path est plein de danger et seuls les brave peuvent compléter ce perilous journey. Votre magic companion vous aidera, mais le choice final sera toujours vôtre.",
+        "options": [
+            "Explorer la dark forêt",
+            "Se diriger directement vers la mountain",
+            "Chercher plus d'informations dans le village",
+            "Préparer l'equipment pour le journey",
+            "Enter combat training",
+            "Visit the traveling trader",
+            "Try the memory training challenge"
+        ]
+    }
+}

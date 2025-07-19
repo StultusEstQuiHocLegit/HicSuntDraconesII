@@ -1,0 +1,20 @@
+{
+    "spanish": {
+        "text": "¡Felicidades, brave adventurer! Después de un long y dangerous journey, finalmente has encontrado el legendary treasure de Hic Sunt Dracones. El ancient chest se abre con un brilliant light, revelando no solo gold y precious gems, sino también ancient scrolls que contienen powerful knowledge. Tu wise companion está proud de tu achievement. Has demostrado que tienes el courage y wisdom para ser un true hero. El village celebrará tu victory, y tu name será recordado en legends por generations.",
+        "options": [
+            "Regresar al village como un hero",
+            "Explorar más mysteries de este realm",
+            "Compartir el treasure con tu companion",
+            "Continuar la adventure en nuevas lands"
+        ]
+    },
+    "french": {
+        "text": "Félicitations, brave aventurier! Après un long et dangerous journey, vous avez finalement trouvé le legendary treasure de Hic Sunt Dracones. Le ancient coffre s'ouvre avec une brilliant light, révélant non seulement gold et precious gems, mais aussi ancient scrolls qui contiennent powerful knowledge. Votre wise companion est proud de votre achievement. Vous avez démontré que vous avez le courage et wisdom pour être un true hero. Le village célébrera votre victory, et votre name sera rappelé dans legends pour generations.",
+        "options": [
+            "Retourner au village comme un hero",
+            "Explorer plus de mysteries de ce realm",
+            "Partager le treasure avec votre companion",
+            "Continuer la adventure dans nouvelles lands"
+        ]
+    }
+}

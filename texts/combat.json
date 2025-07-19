@@ -1,0 +1,12 @@
+{
+    "spanish": {
+        "type": "combat",
+        "enemy": "wolf",
+        "text": "¡Un wild wolf appears! The dangerous beast blocks your path con aggressive growling. Tu companion está ready para fight, pero this battle será challenging. Prepare para combat!"
+    },
+    "french": {
+        "type": "combat", 
+        "enemy": "wolf",
+        "text": "Un wild wolf apparaît! La dangerous bête bloque votre path avec aggressive growling. Votre companion est ready pour fight, mais cette battle sera challenging. Préparez-vous pour combat!"
+    }
+}

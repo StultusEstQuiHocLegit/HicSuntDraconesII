@@ -1,0 +1,22 @@
+{
+    "spanish": {
+        "text": "Te diriges hacia la mysterious mountain, evitando el dark forest. El rocky path es difficult, pero tu determined spirit te mantiene moving forward. Después de hours of climbing, llegas a una ancient cave entrance. Strange symbols están carved en la stone, y una gentle breeze viene desde inside. Tu companion seems nervous pero ready para la adventure. En la distance, puedes hear el sound de running water y perhaps... voices?",
+        "options": [
+            "Entrar en la cave inmediatamente",
+            "Estudiar los strange symbols primero",
+            "Buscar otro entrance around la mountain",
+            "Rest y prepare antes de entering",
+            "Call out para see si someone responds"
+        ]
+    },
+    "french": {
+        "text": "Vous vous dirigez vers la mysterious mountain, évitant la dark forêt. Le rocky path est difficult, mais votre determined spirit vous maintient moving forward. Après hours de climbing, vous arrivez à une ancient cave entrance. Strange symbols sont carved dans la stone, et une gentle breeze vient depuis inside. Votre companion semble nervous mais ready pour la adventure. Dans la distance, vous pouvez hear le sound de running water et perhaps... voices?",
+        "options": [
+            "Entrer dans la cave immédiatement",
+            "Étudier les strange symbols d'abord",
+            "Chercher un autre entrance autour de la mountain",
+            "Rest et prepare avant de entering",
+            "Call out pour voir si someone responds"
+        ]
+    }
+}

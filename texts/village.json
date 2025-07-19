@@ -1,0 +1,26 @@
+{
+    "spanish": {
+        "text": "Decides permanecer en el village para gather more information. Los friendly villagers te cuentan ancient legends sobre el treasure. Una old woman te da una mysterious amulet que she claims will protect you durante tu dangerous journey. El village blacksmith offers to strengthen tu equipment, mientras que el wise priest shares valuable knowledge sobre las creatures que live en la mountain y forest. Tu companion enjoys el attention y rest.",
+        "options": [
+            "Accept el amulet de la old woman",
+            "Visit el blacksmith para equipment upgrades",
+            "Listen más stories del wise priest",
+            "Explore otras parts del village",
+            "Visit the wise elder for advice",
+            "Seek the ancient library puzzle",
+            "Leave el village ahora con nueva información"
+        ]
+    },
+    "french": {
+        "text": "Vous décidez de rester dans le village pour gather plus d'informations. Les friendly villagers vous racontent ancient legends sur le treasure. Une old woman vous donne une mysterious amulet qu'elle claims vous protégera durant votre dangerous journey. Le village blacksmith offers de strengthener votre equipment, tandis que le wise priest partage valuable knowledge sur les creatures qui live dans la mountain et forêt. Votre companion profite de l'attention et rest.",
+        "options": [
+            "Accept l'amulet de la old woman",
+            "Visit le blacksmith pour equipment upgrades",
+            "Listen plus de stories du wise priest",
+            "Explorer d'autres parts du village",
+            "Visit the wise elder for advice",
+            "Seek the ancient library puzzle",
+            "Leave le village maintenant avec nouvelle information"
+        ]
+    }
+}

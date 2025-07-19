@@ -1,0 +1,10 @@
+{
+    "spanish": {
+        "type": "trading",
+        "text": "Encuentras a un mysterious trader en el path. El wise merchant tiene many precious items para sell. Sus eyes sparkle con greed mientras examina tu gold. '¡Welcome, brave adventurer!' dice con una sly smile. 'I have exactly lo que you need para tu dangerous journey ahead.'"
+    },
+    "french": {
+        "type": "trading",
+        "text": "Vous trouvez un mysterious trader sur le path. Le wise merchant a many precious items pour sell. Ses eyes sparkle avec greed pendant qu'il examine votre gold. '¡Welcome, brave aventurier!' dit-il avec une sly smile. 'J'ai exactement ce que vous need pour votre dangerous journey ahead.'"
+    }
+}
