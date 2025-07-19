@@ -1,5 +1,5 @@
 // Placeholder for OpenAI API key
-const OPENAI_API_KEY = 'PLACEHOLDERTODEFINEAPIKEYHERE';
+const OPENAI_API_KEY = 'PLACEHOLDER';
 
 // Hardcoded JSON examples (replace with your actual JSON content)
 const chapter1 = {
@@ -365,26 +365,19 @@ const wordquiz = {
 
 // Return as array of strings or objects as needed
 async function loadTemplates() {
-  //   // return [
-  //   chapter1.text,
-  //   combat.text,
-  //   crafting.text,
-  //   dialogue.text,
-  //   intro.text,
-  //   minigame.text,
-  //   mountain.text,
-  //   puzzle.text,
-  //   trader.text,
-  //   treasure.text,
-  //   village.text,
-  //   wordquiz.text
-  // ];
   return [
-    chapter1.text,
-    combat.text,
-    crafting.text,
-    dialogue.text,
-    wordquiz.text
+    chapter1,
+    combat,
+    crafting,
+    // dialogue,
+    // wordquiz,
+    // intro,
+    // village,
+    // mountain,
+    // puzzle,
+    // trader,
+    // treasure,
+    minigame
   ];
 }
 
@@ -402,44 +395,63 @@ function saveToContext(newText) {
 }
 
 // Generate story using a hardcoded example (for testing)
-async function generateStory(userInput) {
-  // For testing, just return the combat example
-  saveToContext(JSON.stringify(combat));
-  return combat; // Return the full JSON object, not just text
-}
+// async function generateStory(userInput) {
+//   // For testing, just return the combat example
+//   saveToContext(JSON.stringify(combat));
+//   return combat; // Return the full JSON object, not just text
+// }
 
 // Generate story using AI
-// async function generateStory(userInput) {
-//   const templates = await loadTemplates();
-//   const context = getStoryContext();
-// 
-//   // Build the prompt for AI
-//   const prompt = `
-// You are a story generator. Use the following examples as templates for your output format:
-// ${templates.map((t, i) => `Example ${i + 1}:\n${JSON.stringify(t, null, 2)}`).join('\n\n')}
-// Continue the story, keeping the style and format above. Here is the recent story context:
-// ${context.join('\n')}
-// User input: ${userInput}
-// Please make sure to answer exactly in the same format as the examples provided, in the exact same JSON format, and ensure that the story continues logically from the last context.
-//   `;
-// 
-//   const response = await fetch('https://api.openai.com/v1/chat/completions', {
-//     method: 'POST',
-//     headers: {
-//       'Authorization': `Bearer ${OPENAI_API_KEY}`,
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       model: 'gpt-4o', // or your preferred model
-//       messages: [{ role: 'user', content: prompt }]
-//     })
-//   });
-// 
-//   const data = await response.json();
-//   const aiText = data.choices[0].message.content.trim();
-// 
-//   saveToContext(aiText);
-//   return aiText;
-// }
+async function generateStory(userInput) {
+  const templates = await loadTemplates();
+  const context = getStoryContext();
+
+  // Build the prompt for AI
+  const prompt = `
+You are a story generator. Use the following examples as templates for your output format:
+${templates.map((t, i) => `Example ${i + 1}:\n${JSON.stringify(t, null, 2)}`).join('\n\n')}
+Continue the story, keeping the style and format above. Here is the recent story context:
+${context.join('\n')}
+User input: ${userInput}
+Please make sure to answer exactly in the same format as the examples provided, in the exact same JSON format, and ensure that the story continues logically from the last context.
+  `;
+
+  // Log the prompt sent to the AI
+  console.log("Prompt sent to AI:", prompt);
+
+  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${OPENAI_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'gpt-4o', // or your preferred model
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+
+  const data = await response.json();
+  let aiText = data.choices[0].message.content.trim();
+
+  if (aiText.startsWith("```")) {
+    aiText = aiText.replace(/^```(?:json)?\s*|\s*```$/g, '');
+  }
+
+  // Log the raw AI response for debugging
+  console.log("Raw AI response:", aiText);
+  
+  // Try to parse the AI's response as JSON
+  let storyData;
+  try {
+    storyData = JSON.parse(aiText);
+  } catch (e) {
+    console.error("Failed to parse AI response as JSON:", aiText, e);
+    storyData = { text: aiText }; // fallback object
+  }
+
+  saveToContext(aiText);
+  return storyData;
+}
 
 export { generateStory };
