@@ -8,7 +8,8 @@
             "Preparar equipment para el journey",
             "Enter combat training",
             "Visit the traveling trader",
-            "Try the memory training challenge"
+            "Try the memory training challenge",
+            "Attempt the word quiz challenge"
         ]
     },
     "french": {
@@ -20,7 +21,8 @@
             "Préparer l'equipment pour le journey",
             "Enter combat training",
             "Visit the traveling trader",
-            "Try the memory training challenge"
+            "Try the memory training challenge",
+            "Attempt the word quiz challenge"
         ]
     }
 }

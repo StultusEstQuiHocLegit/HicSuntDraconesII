@@ -1,0 +1,40 @@
+{
+    "spanish": {
+        "type": "wordquiz",
+        "text": "Un sabio mago te reta: 'Elige la traducción correcta de cada palabra.'",
+        "pairs": [
+            {"spanish": "gato", "english": "cat"},
+            {"spanish": "perro", "english": "dog"},
+            {"spanish": "rojo", "english": "red"},
+            {"spanish": "azul", "english": "blue"},
+            {"spanish": "libro", "english": "book"},
+            {"spanish": "ciudad", "english": "city"},
+            {"spanish": "árbol", "english": "tree"},
+            {"spanish": "día", "english": "day"},
+            {"spanish": "noche", "english": "night"},
+            {"spanish": "amigo", "english": "friend"},
+            {"spanish": "comida", "english": "food"},
+            {"spanish": "sueño", "english": "dream"}
+        ],
+        "success": "¡Excelente! Has dominado estas palabras."
+    },
+    "french": {
+        "type": "wordquiz",
+        "text": "Un mage sage vous met au défi : 'Choisissez la bonne traduction de chaque mot.'",
+        "pairs": [
+            {"french": "chat", "english": "cat"},
+            {"french": "chien", "english": "dog"},
+            {"french": "rouge", "english": "red"},
+            {"french": "bleu", "english": "blue"},
+            {"french": "livre", "english": "book"},
+            {"french": "ville", "english": "city"},
+            {"french": "arbre", "english": "tree"},
+            {"french": "jour", "english": "day"},
+            {"french": "nuit", "english": "night"},
+            {"french": "ami", "english": "friend"},
+            {"french": "nourriture", "english": "food"},
+            {"french": "rêve", "english": "dream"}
+        ],
+        "success": "Excellent ! Vous maîtrisez ces mots."
+    }
+}

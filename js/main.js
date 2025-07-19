@@ -307,6 +307,9 @@ function displayStoryContent() {
     } else if (storyData.type === 'minigame') {
         displayMinigame(storyData);
         return;
+    } else if (storyData.type === 'wordquiz') {
+        displayWordQuiz(storyData);
+        return;
     }
 
     // Display story text with hover translations
@@ -391,6 +394,27 @@ function setupKeyboardNavigation() {
             // Handle 0 for leaving memory game
             if (key === '0') {
                 leaveMinigame();
+                event.preventDefault();
+                return;
+            }
+        }
+
+        // Handle word quiz controls
+        const wordQuiz = document.querySelector('.word-quiz-interface');
+        if (wordQuiz) {
+            if (key >= '1' && key <= '6') {
+                const index = parseInt(key) - 1;
+                const options = wordQuiz.querySelectorAll('.quiz-option');
+                if (index < options.length) {
+                    const word = options[index].getAttribute('data-word');
+                    selectQuizOption(word);
+                    event.preventDefault();
+                    return;
+                }
+            }
+
+            if (key === '0') {
+                leaveWordQuiz();
                 event.preventDefault();
                 return;
             }
@@ -490,7 +514,8 @@ function handleStoryChoice(choiceIndex) {
             3: 'village',   // Preparar equipment
             4: 'combat',    // Enter combat training
             5: 'trader',    // Visit the traveling trader
-            6: 'minigame'   // Try memory training challenge
+            6: 'minigame',  // Try memory training challenge
+            7: 'wordquiz'   // Attempt the word quiz challenge
         },
         'chapter1': {
             0: () => { addRandomItem(); loadStoryContent('intro'); }, // Investigate light
@@ -1560,4 +1585,89 @@ function leaveMinigame() {
     window.currentMinigame = null;
     window.memoryGameState = null;
     loadStoryContent('intro');
+}
+
+// ----- Word Quiz Challenge -----
+function displayWordQuiz(storyData) {
+    const storyDiv = document.getElementById('storyText');
+    const optionsDiv = document.getElementById('gameOptions');
+
+    storyDiv.innerHTML = `
+        <div class="word-quiz-interface">
+            <div class="quiz-progress"><div class="quiz-progress-fill" style="width:0%"></div></div>
+            <h3>📝 WORD CHALLENGE</h3>
+            <div id="quizWord" class="quiz-word"></div>
+            <div id="quizOptions" class="quiz-options"></div>
+            <button class="combat-btn" onclick="leaveWordQuiz()">0. LEAVE</button>
+        </div>
+    `;
+
+    optionsDiv.innerHTML = '';
+
+    window.currentWordQuiz = {
+        pairs: storyData.pairs,
+        index: 0,
+        success: storyData.success || 'Great job!'
+    };
+
+    showNextQuizWord();
+}
+
+function showNextQuizWord() {
+    const state = window.currentWordQuiz;
+    if (!state) return;
+
+    if (state.index >= state.pairs.length) {
+        showGameMessage(state.success);
+        addRandomItem();
+        setTimeout(() => loadStoryContent('intro'), 2000);
+        window.currentWordQuiz = null;
+        return;
+    }
+
+    const pair = state.pairs[state.index];
+    const localWord = pair[window.currentLanguage === 'french' ? 'french' : 'spanish'];
+    const correct = pair.english;
+
+    const allEnglish = state.pairs.map(p => p.english);
+    const options = shuffleArray(
+        [correct, ...shuffleArray(allEnglish.filter(w => w !== correct)).slice(0, 5)]
+    );
+
+    document.getElementById('quizWord').textContent = localWord;
+    document.getElementById('quizOptions').innerHTML = options.map((opt, idx) => `
+        <div class="quiz-option" data-word="${opt}" onclick="selectQuizOption('${opt}')">
+            <span class="key-indicator">${idx + 1}</span>
+            ${opt}
+        </div>
+    `).join('');
+
+    const progress = (state.index / state.pairs.length) * 100;
+    document.querySelector('.quiz-progress-fill').style.width = `${progress}%`;
+}
+
+function selectQuizOption(word) {
+    const state = window.currentWordQuiz;
+    if (!state) return;
+
+    const pair = state.pairs[state.index];
+    if (word === pair.english) {
+        showGameMessage('Correct!');
+        state.index++;
+        setTimeout(showNextQuizWord, 800);
+    } else {
+        showGameMessage('Try again!');
+    }
+}
+
+function leaveWordQuiz() {
+    window.currentWordQuiz = null;
+    loadStoryContent('intro');
+}
+
+function shuffleArray(arr) {
+    return arr
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
 }
