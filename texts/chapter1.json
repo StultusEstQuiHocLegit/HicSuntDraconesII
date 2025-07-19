@@ -1,0 +1,22 @@
+{
+    "spanish": {
+        "text": "Después de careful consideration, decides tomar el path hacia el dark forest. Los ancient árboles se alzan como powerful guardians, y el mysterious sonido del wind through las leaves te llena de both excitement y apprehension. Tu brave companion está alert, sensing el danger que might lurk en las shadows. De repente, ves una strange light brillando entre los trees. ¿Could it be magic? ¿Or perhaps otro traveler lost en este vast wilderness?",
+        "options": [
+            "Investigar la strange light",
+            "Evitar la light y continuar por el main path",
+            "Enviar a tu companion a investigate primero",
+            "Descansar y wait hasta que la light desaparezca",
+            "Llamar a quien might estar cerca de la light"
+        ]
+    },
+    "french": {
+        "text": "Après careful consideration, vous décidez de prendre le path vers la dark forêt. Les ancient arbres se dressent comme powerful guardiens, et le mysterious son du wind à travers les leaves vous remplit de both excitement et apprehension. Votre brave companion est alert, sentant le danger qui might se cacher dans les shadows. Soudain, vous voyez une strange light brillant entre les trees. Could it be magic? Ou perhaps un autre traveler perdu dans cette vast wilderness?",
+        "options": [
+            "Investiguer la strange light",
+            "Éviter la light et continuer sur le main path",
+            "Envoyer votre companion pour investigate en premier",
+            "Se reposer et wait jusqu'à ce que la light disparaisse",
+            "Appeler celui qui might être près de la light"
+        ]
+    }
+}
