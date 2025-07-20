@@ -589,6 +589,23 @@ function selectOption(index) {
 }
 window.selectOption = selectOption;
 
+window.combatAction = combatAction;
+window.buyItem = buyItem;
+window.sellItem = sellItem;
+window.leaveTrade = leaveTrade;
+window.checkPuzzleAnswer = checkPuzzleAnswer;
+window.showPuzzleHint = showPuzzleHint;
+window.leavePuzzle = leavePuzzle;
+window.selectDialogueResponse = selectDialogueResponse;
+window.leaveDialogue = leaveDialogue;
+window.craftItem = craftItem;
+window.leaveCrafting = leaveCrafting;
+window.leaveMinigame = leaveMinigame;
+window.selectLeftWord = selectLeftWord;
+window.selectRightWord = selectRightWord;
+window.selectQuizOption = selectQuizOption;
+window.leaveWordQuiz = leaveWordQuiz;
+
 // Handle story progression based on choices
 function handleStoryChoice(choiceIndex) {
     const currentChapter = window.currentChapter || 'intro';
