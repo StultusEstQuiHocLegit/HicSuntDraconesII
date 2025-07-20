@@ -108,7 +108,7 @@ $current_language = $_COOKIE['hsd_language'] ?? 'english';
         </main>
     </div>
 
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
     <script>
         window.currentLanguage = '<?php echo $current_language; ?>';
         if (window.currentLanguage !== 'english') {
