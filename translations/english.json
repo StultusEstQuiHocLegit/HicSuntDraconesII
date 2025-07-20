@@ -21,6 +21,7 @@
     "reset_character": "Reset Character",
     "settings_tooltip": "Settings",
     "feedback_tooltip": "Feedback",
+    "language_switched": "Language switched. Future stories will be generated in {language}.",
     "inventory": "Inventory",
     "speed": "Speed",
     "life": "Life",

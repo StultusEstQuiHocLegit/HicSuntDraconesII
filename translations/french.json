@@ -21,6 +21,7 @@
     "reset_character": "Réinitialiser le personnage",
     "settings_tooltip": "Paramètres (Settings)",
     "feedback_tooltip": "Commentaires (Feedback)",
+    "language_switched": "Langue changée. Les futures histoires seront générées en {language}.",
     "inventory": "Inventaire",
     "speed": "Vitesse",
     "life": "Vie",
