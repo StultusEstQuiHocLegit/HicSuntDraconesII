@@ -344,6 +344,22 @@ const wordquiz = {
     }
 };
 
+// Map chapter names to their template objects for easy lookup
+const chapterMap = {
+  chapter1,
+  combat,
+  crafting,
+  dialogue,
+  wordquiz,
+  intro,
+  village,
+  mountain,
+  puzzle,
+  trader,
+  treasure,
+  minigame,
+};
+
 
 
 
@@ -431,20 +447,37 @@ Please answer in JSON containing only the key \"${language}\" and ensure that th
   // Log the prompt sent to the AI
   console.log("Prompt sent to AI:", prompt);
 
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${OPENAI_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model: 'gpt-4o', // or your preferred model
-      messages: [{ role: 'user', content: prompt }]
-    })
-  });
+  let aiText;
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o',
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
 
-  const data = await response.json();
-  let aiText = data.choices[0].message.content.trim();
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+
+    const data = await response.json();
+    aiText = data.choices[0].message.content.trim();
+  } catch (err) {
+    console.error('AI request failed:', err);
+    const fallback = chapterMap[userInput];
+    if (fallback && fallback[language]) {
+      const fallbackObj = { [language]: fallback[language] };
+      aiText = JSON.stringify(fallbackObj);
+      saveToContext(userInput, aiText);
+      return fallbackObj;
+    }
+    throw err;
+  }
 
   if (aiText.startsWith("```")) {
     aiText = aiText.replace(/^```(?:json)?\s*|\s*```$/g, '');
