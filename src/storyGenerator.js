@@ -492,15 +492,52 @@ Please answer in JSON containing only the key \"${language}\" and ensure that th
 
   // Log the raw AI response for debugging
   console.log("Raw AI response:", aiText);
-  
+
   // Try to parse the AI's response as JSON
   let storyData;
   try {
     storyData = JSON.parse(aiText);
   } catch (e) {
-    console.error("Failed to parse AI response as JSON:", aiText, e);
-    storyData = { text: aiText }; // fallback object
+    // Attempt to strip extraneous characters outside of the JSON object
+    const start = aiText.indexOf('{');
+    const end = aiText.lastIndexOf('}');
+    if (start !== -1 && end > start) {
+      const cleaned = aiText.slice(start, end + 1);
+      try {
+        storyData = JSON.parse(cleaned);
+        aiText = cleaned; // use cleaned JSON for context
+      } catch (err) {
+        console.error('Failed to parse cleaned AI response:', cleaned, err);
+        console.error('Original AI response was:', aiText, e);
+        storyData = { text: aiText };
+      }
+    } else {
+      console.error('Failed to parse AI response as JSON:', aiText, e);
+      storyData = { text: aiText }; // fallback object
+    }
   }
+
+  // Sanitize strings inside the parsed object to remove stray characters
+  const sanitizeString = (str) =>
+    str
+      .replace(/\b[A-Za-z]*">/g, '')
+      .replace(/[<>]/g, '')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+
+  const sanitizeObject = (obj) => {
+    if (typeof obj === 'string') return sanitizeString(obj);
+    if (Array.isArray(obj)) return obj.map(sanitizeObject);
+    if (obj && typeof obj === 'object') {
+      Object.keys(obj).forEach((key) => {
+        obj[key] = sanitizeObject(obj[key]);
+      });
+    }
+    return obj;
+  };
+
+  storyData = sanitizeObject(storyData);
+  aiText = JSON.stringify(storyData);
 
   saveToContext(userInput, aiText);
   return storyData;
