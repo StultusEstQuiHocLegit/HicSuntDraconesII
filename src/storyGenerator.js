@@ -387,11 +387,18 @@ function getStoryContext() {
   return context.slice(-20);
 }
 
+function getContextTexts() {
+  return getStoryContext().map(entry =>
+    typeof entry === 'string' ? entry : entry.text
+  );
+}
+
 // Save new AI-generated text to localStorage
-function saveToContext(newText) {
+function saveToContext(chapter, newText) {
   const context = getStoryContext();
-  context.push(newText);
+  context.push({ chapter, text: newText });
   localStorage.setItem('storyContext', JSON.stringify(context.slice(-20)));
+  localStorage.setItem('currentChapter', chapter);
 }
 
 // Generate story using a hardcoded example (for testing)
@@ -404,7 +411,7 @@ function saveToContext(newText) {
 // Generate story using AI
 async function generateStory(userInput) {
   const templates = await loadTemplates();
-  const context = getStoryContext();
+  const context = getContextTexts();
 
   // Build the prompt for AI
   const prompt = `
@@ -450,7 +457,7 @@ Please make sure to answer exactly in the same format as the examples provided, 
     storyData = { text: aiText }; // fallback object
   }
 
-  saveToContext(aiText);
+  saveToContext(userInput, aiText);
   return storyData;
 }
 

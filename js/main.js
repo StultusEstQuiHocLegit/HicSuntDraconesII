@@ -15,13 +15,30 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadAnimalsForGame();
     await loadItems();
     loadTranslations();
-    loadStoryContent();
+    initializeStory();
     setupKeyboardNavigation();
     setupInventory();
     createDropZone();
 });
 
 import { generateStory } from '../src/storyGenerator.js';
+
+function initializeStory() {
+    const stored = JSON.parse(localStorage.getItem('storyContext') || '[]');
+    if (stored.length > 0) {
+        try {
+            const last = stored[stored.length - 1];
+            const text = typeof last === 'string' ? last : last.text;
+            currentStory = JSON.parse(text);
+            window.currentChapter = last.chapter || localStorage.getItem('currentChapter') || 'intro';
+            displayStoryContent();
+            return;
+        } catch (e) {
+            console.error('Failed to parse stored story', e);
+        }
+    }
+    loadStoryContent('intro');
+}
 
 // Load translations for the current language
 async function loadTranslations() {
@@ -318,6 +335,34 @@ async function loadStoryContent(userInput = 'intro') {
         // Hide loading spinner
         hideLoading();
     }
+}
+
+function restorePreviousStory() {
+    const stored = JSON.parse(localStorage.getItem('storyContext') || '[]');
+    if (stored.length >= 2) {
+        try {
+            const prev = stored[stored.length - 2];
+            const text = typeof prev === 'string' ? prev : prev.text;
+            currentStory = JSON.parse(text);
+            window.currentChapter = prev.chapter || localStorage.getItem('currentChapter') || 'intro';
+            displayStoryContent();
+            return;
+        } catch (e) {
+            console.error('Failed to restore story', e);
+        }
+    } else if (stored.length === 1) {
+        try {
+            const first = stored[0];
+            const text = typeof first === 'string' ? first : first.text;
+            currentStory = JSON.parse(text);
+            window.currentChapter = first.chapter || localStorage.getItem('currentChapter') || 'intro';
+            displayStoryContent();
+            return;
+        } catch (e) {
+            console.error('Failed to parse stored story', e);
+        }
+    }
+    loadStoryContent('intro');
 }
 
 // Display story content with translations
@@ -996,7 +1041,7 @@ function combatAction(action) {
     } else if (action === 'flee') {
         showGameMessage('You fled from combat!');
         window.currentCombat = null;
-        setTimeout(() => loadStoryContent('intro'), 1500);
+        setTimeout(() => restorePreviousStory(), 1500);
         return;
     }
     
@@ -1005,7 +1050,7 @@ function combatAction(action) {
         showGameMessage('Victory! You defeated the enemy!');
         addRandomItem();
         window.currentCombat = null;
-        setTimeout(() => loadStoryContent('intro'), 2000);
+        setTimeout(() => restorePreviousStory(), 2000);
         return;
     }
     
@@ -1240,7 +1285,7 @@ function updateGoldAndInventoryInPlace() {
 
 // Leave trading interface
 function leaveTrade() {
-    loadStoryContent('intro');
+    restorePreviousStory();
 }
 
 // Initialize tooltips for translation
@@ -1324,7 +1369,7 @@ function showPuzzleHint(hint) {
 
 function leavePuzzle() {
     window.currentPuzzle = null;
-    loadStoryContent('intro');
+    restorePreviousStory();
 }
 
 // Display dialogue interface
@@ -1369,7 +1414,7 @@ function selectDialogueResponse(index, response) {
 }
 
 function leaveDialogue() {
-    loadStoryContent('intro');
+    restorePreviousStory();
 }
 
 // Display crafting interface
@@ -1456,7 +1501,7 @@ function craftItem(recipeIndex) {
 
 function leaveCrafting() {
     window.currentCrafting = null;
-    loadStoryContent('intro');
+    restorePreviousStory();
 }
 
 // Display minigame interface
@@ -1626,7 +1671,7 @@ function checkMemoryMatch() {
 function leaveMinigame() {
     window.currentMinigame = null;
     window.memoryGameState = null;
-    loadStoryContent('intro');
+    restorePreviousStory();
 }
 
 // ----- Word Quiz Challenge -----
@@ -1704,7 +1749,7 @@ function selectQuizOption(word) {
 
 function leaveWordQuiz() {
     window.currentWordQuiz = null;
-    loadStoryContent('intro');
+    restorePreviousStory();
 }
 
 function shuffleArray(arr) {
