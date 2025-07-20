@@ -17,7 +17,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadTranslations();
     const langChanged = localStorage.getItem('languageChangedTo');
     if (langChanged) {
-        showGameMessage(`Language switched. Future stories will be generated in ${langChanged}.`);
+        const langName = translations[langChanged] || langChanged;
+        const template = translations['language_switched'] ||
+            'Language switched. Future stories will be generated in {language}.';
+        showGameMessage(template.replace('{language}', langName));
         localStorage.removeItem('languageChangedTo');
     }
     initializeStory();
