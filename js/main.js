@@ -586,6 +586,9 @@ function selectOption(index) {
 }
 window.selectOption = selectOption;
 
+// Expose language switcher for inline handlers
+window.changeLanguage = changeLanguage;
+
 window.combatAction = combatAction;
 window.buyItem = buyItem;
 window.sellItem = sellItem;
