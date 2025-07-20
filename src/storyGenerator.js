@@ -6,21 +6,21 @@ const chapter1 = {
     "spanish": {
         "text": "Después de careful consideration, decides tomar el path hacia el dark forest. Los ancient árboles se alzan como powerful guardians, y el mysterious sonido del wind through las leaves te llena de both excitement y apprehension. Tu brave companion está alert, sensing el danger que might lurk en las shadows. De repente, ves una strange light brillando entre los trees. ¿Could it be magic? ¿Or perhaps otro traveler lost en este vast wilderness?",
         "options": [
-            "Investigar la strange light",
+            "Investigar la strange light (posible combate)",
             "Evitar la light y continuar por el main path",
-            "Enviar a tu companion a investigate primero",
-            "Descansar y wait hasta que la light desaparezca",
-            "Llamar a quien might estar cerca de la light"
+            "Consultar a tu companion sobre la light",
+            "Reunir materiales nearby para crafting",
+            "Buscar un trader cercano"
         ]
     },
     "french": {
         "text": "Après careful consideration, vous décidez de prendre le path vers la dark forêt. Les ancient arbres se dressent comme powerful guardiens, et le mysterious son du wind à travers les leaves vous remplit de both excitement et apprehension. Votre brave companion est alert, sentant le danger qui might se cacher dans les shadows. Soudain, vous voyez une strange light brillant entre les trees. Could it be magic? Ou perhaps un autre traveler perdu dans cette vast wilderness?",
         "options": [
-            "Investiguer la strange light",
+            "Investiguer la strange light (peut-être un combat)",
             "Éviter la light et continuer sur le main path",
-            "Envoyer votre companion pour investigate en premier",
-            "Se reposer et wait jusqu'à ce que la light disparaisse",
-            "Appeler celui qui might être près de la light"
+            "Consulter votre companion au sujet de la light",
+            "Rassembler des matériaux nearby pour crafting",
+            "Chercher un trader proche"
         ]
     }
 };
@@ -204,8 +204,8 @@ const mountain = {
     "spanish": {
         "text": "Te diriges hacia la mysterious mountain, evitando el dark forest. El rocky path es difficult, pero tu determined spirit te mantiene moving forward. Después de hours of climbing, llegas a una ancient cave entrance. Strange symbols están carved en la stone, y una gentle breeze viene desde inside. Tu companion seems nervous pero ready para la adventure. En la distance, puedes hear el sound de running water y perhaps... voices?",
         "options": [
-            "Entrar en la cave inmediatamente",
-            "Estudiar los strange symbols primero",
+            "Entrar en la cave inmediatamente (posible combate)",
+            "Estudiar los strange symbols, quizás sea un puzzle",
             "Buscar otro entrance around la mountain",
             "Rest y prepare antes de entering",
             "Call out para see si someone responds"
@@ -214,8 +214,8 @@ const mountain = {
     "french": {
         "text": "Vous vous dirigez vers la mysterious mountain, évitant la dark forêt. Le rocky path est difficult, mais votre determined spirit vous maintient moving forward. Après hours de climbing, vous arrivez à une ancient cave entrance. Strange symbols sont carved dans la stone, et une gentle breeze vient depuis inside. Votre companion semble nervous mais ready pour la adventure. Dans la distance, vous pouvez hear le sound de running water et perhaps... voices?",
         "options": [
-            "Entrer dans la cave immédiatement",
-            "Étudier les strange symbols d'abord",
+            "Entrer dans la cave immédiatement (peut-être un combat)",
+            "Étudier les strange symbols, peut-être un puzzle",
             "Chercher un autre entrance autour de la mountain",
             "Rest et prepare avant de entering",
             "Call out pour voir si someone responds"

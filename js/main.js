@@ -623,11 +623,11 @@ function handleStoryChoice(choiceIndex) {
             7: 'wordquiz'   // Attempt the word quiz challenge
         },
         'chapter1': {
-            0: () => { addRandomItem(); loadStoryContent('intro'); }, // Investigate light
-            1: 'mountain', // Avoid light, continue
-            2: () => { addRandomItem(); loadStoryContent('chapter1'); }, // Send companion
-            3: 'village', // Rest and wait
-            4: () => { addRandomItem(); loadStoryContent('village'); } // Call out
+            0: 'combat', // Investigate light - leads to combat
+            1: 'mountain', // Avoid light and continue
+            2: 'dialogue', // Consult companion about the light
+            3: 'crafting', // Gather materials for crafting
+            4: 'trader' // Search for a nearby trader
         },
         'combat': {
             // Combat is handled by the combat system
@@ -636,11 +636,11 @@ function handleStoryChoice(choiceIndex) {
             // Trading is handled by the trading system
         },
         'mountain': {
-            0: () => { addItem('💎'); loadStoryContent('treasure'); }, // Enter cave - find treasure!
-            1: () => { addRandomItem(); loadStoryContent('mountain'); }, // Study symbols
+            0: 'combat', // Enter cave could trigger combat
+            1: 'puzzle', // Study symbols may present a puzzle
             2: 'village', // Find another entrance
             3: () => { addRandomItem(); loadStoryContent('mountain'); }, // Rest
-            4: () => { addRandomItem(); loadStoryContent('chapter1'); } // Call out
+            4: 'dialogue' // Call out to see if someone responds
         },
         'village': {
             0: () => { addItem('🧿'); loadStoryContent('intro'); }, // Accept amulet
