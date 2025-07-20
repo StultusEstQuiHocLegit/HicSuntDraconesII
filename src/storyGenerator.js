@@ -4,23 +4,23 @@ const OPENAI_API_KEY = 'PLACEHOLDER';
 // Hardcoded JSON examples (replace with your actual JSON content)
 const chapter1 = {
     "spanish": {
-        "text": "Después de careful consideration, decides tomar el path hacia el dark forest. Los ancient árboles se alzan como powerful guardians, y el mysterious sonido del wind through las leaves te llena de both excitement y apprehension. Tu brave companion está alert, sensing el danger que might lurk en las shadows. De repente, ves una strange light brillando entre los trees. ¿Could it be magic? ¿Or perhaps otro traveler lost en este vast wilderness?",
+        "text": "Después de considerar cuidadosamente, decides tomar el camino hacia el bosque oscuro. Los antiguos árboles se alzan como guardianes poderosos y el misterioso sonido del viento entre las hojas te llena de emoción y temor. Tu valiente compañero está alerta, intuyendo el peligro que puede acechar entre las sombras. De repente, ves una luz extraña brillando entre los árboles. ¿Podría ser magia? ¿O tal vez otro viajero perdido en esta vasta naturaleza?",
         "options": [
-            "Investigar la strange light (posible combate)",
-            "Evitar la light y continuar por el main path",
-            "Consultar a tu companion sobre la light",
-            "Reunir materiales nearby para crafting",
-            "Buscar un trader cercano"
+            "Investigar la luz extraña (posible combate)",
+            "Evitar la luz y continuar por el camino principal",
+            "Consultar a tu compañero sobre la luz",
+            "Reunir materiales cercanos para forjar",
+            "Buscar un comerciante cercano"
         ]
     },
     "french": {
-        "text": "Après careful consideration, vous décidez de prendre le path vers la dark forêt. Les ancient arbres se dressent comme powerful guardiens, et le mysterious son du wind à travers les leaves vous remplit de both excitement et apprehension. Votre brave companion est alert, sentant le danger qui might se cacher dans les shadows. Soudain, vous voyez une strange light brillant entre les trees. Could it be magic? Ou perhaps un autre traveler perdu dans cette vast wilderness?",
+        "text": "Après mûre réflexion, vous décidez de prendre le chemin vers la forêt sombre. Les arbres anciens se dressent comme de puissants gardiens et le son mystérieux du vent dans les feuilles vous remplit d'excitation et d'appréhension. Votre compagnon courageux est alerte, sentant le danger qui pourrait se cacher dans l'ombre. Soudain, vous apercevez une lumière étrange entre les arbres. Serait-ce de la magie ? Ou peut-être un autre voyageur perdu dans cette vaste nature ?",
         "options": [
-            "Investiguer la strange light (peut-être un combat)",
-            "Éviter la light et continuer sur le main path",
-            "Consulter votre companion au sujet de la light",
-            "Rassembler des matériaux nearby pour crafting",
-            "Chercher un trader proche"
+            "Investiguer la lumière étrange (peut-être un combat)",
+            "Éviter la lumière et continuer sur le chemin principal",
+            "Consulter votre compagnon au sujet de la lumière",
+            "Rassembler des matériaux proches pour forger",
+            "Chercher un marchand proche"
         ]
     }
 };
@@ -29,67 +29,67 @@ const combat = {
     "spanish": {
         "type": "combat",
         "enemy": "wolf",
-        "text": "¡Un wild wolf appears! The dangerous beast blocks your path con aggressive growling. Tu companion está ready para fight, pero this battle será challenging. Prepare para combat!"
+        "text": "¡Un lobo salvaje aparece! La peligrosa bestia bloquea tu camino con gruñidos agresivos. Tu compañero está listo para luchar, pero esta batalla será difícil. ¡Prepárate para combatir!"
     },
     "french": {
         "type": "combat", 
         "enemy": "wolf",
-        "text": "Un wild wolf apparaît! La dangerous bête bloque votre path avec aggressive growling. Votre companion est ready pour fight, mais cette battle sera challenging. Préparez-vous pour combat!"
+        "text": "Un loup sauvage apparaît ! La bête dangereuse bloque votre chemin avec des grognements agressifs. Votre compagnon est prêt à se battre, mais ce combat sera difficile. Préparez-vous à combattre !"
     }
 };
 
 const crafting = {
     "spanish": {
         "type": "crafting",
-        "text": "You discover an ancient forge still glowing con magical fire. The spirit del blacksmith appears: 'Welcome, traveler! I can help you crear powerful items if you have the right materials. What would you like to craft?'",
+        "text": "Descubres una antigua forja que aún resplandece con fuego mágico. El espíritu del herrero aparece: '¡Bienvenido, viajero! Puedo ayudarte a crear objetos poderosos si tienes los materiales adecuados. ¿Qué te gustaría forjar?'",
         "recipes": [
             {
                 "name": "Healing Potion",
                 "name_local": "Poción Curativa", 
                 "ingredients": ["🌿", "💧"],
                 "result": "🧪",
-                "description": "Restores health durante battle"
+                "description": "Restaura salud durante la batalla"
             },
             {
                 "name": "Magic Sword",
                 "name_local": "Espada Mágica",
                 "ingredients": ["⚔️", "🌟"],
                 "result": "🗡️",
-                "description": "Increases attack power significantly"
+                "description": "Aumenta considerablemente el poder de ataque"
             },
             {
                 "name": "Protection Amulet", 
                 "name_local": "Amuleto Protector",
                 "ingredients": ["🧿", "💎"],
                 "result": "🛡️",
-                "description": "Reduces incoming damage"
+                "description": "Reduce el daño recibido"
             }
         ]
     },
     "french": {
         "type": "crafting",
-        "text": "Vous découvrez une ancient forge encore glowing avec magical fire. L'esprit du blacksmith appears: 'Bienvenue, traveler! Je peux vous aider à créer powerful items si vous avez les right matériaux. Que voulez-vous craft?'",
+        "text": "Vous découvrez une ancienne forge encore ardente de feu magique. L'esprit du forgeron apparaît : 'Bienvenue, voyageur ! Je peux vous aider à créer des objets puissants si vous avez les matériaux adéquats. Que souhaitez-vous forger ?'",
         "recipes": [
             {
                 "name": "Healing Potion",
                 "name_local": "Potion Curative",
                 "ingredients": ["🌿", "💧"], 
                 "result": "🧪",
-                "description": "Restore la santé pendant battle"
+                "description": "Restaure la santé pendant la bataille"
             },
             {
                 "name": "Magic Sword",
                 "name_local": "Épée Magique",
                 "ingredients": ["⚔️", "🌟"],
                 "result": "🗡️", 
-                "description": "Augmente attack power significativement"
+                "description": "Augmente considérablement la puissance d'attaque"
             },
             {
                 "name": "Protection Amulet",
                 "name_local": "Amulette Protectrice",
                 "ingredients": ["🧿", "💎"],
                 "result": "🛡️",
-                "description": "Réduit incoming damage"
+                "description": "Réduit les dégâts reçus"
             }
         ]
     }
@@ -100,19 +100,19 @@ const dialogue = {
         "type": "dialogue",
         "character": "Wise Elder",
         "character_emoji": "🧙‍♂️",
-        "text": "Greetings, young adventurer! I am el ancient Elder of this village. Many travelers pasan por aquí, but few have the courage to face what lies ahead. Tell me, ¿por qué do you journey through these dangerous lands?",
+        "text": "¡Saludos, joven aventurero! Soy el anciano del pueblo. Muchos viajeros pasan por aquí, pero pocos tienen el valor de enfrentar lo que se encuentra más adelante. Dime, ¿por qué viajas por estas tierras peligrosas?",
         "responses": [
             {
-                "text": "Busco treasure y glory",
-                "response": "Ah, la greed drives many. But remember, true treasure is not always gold, pequeño one."
+                "text": "Busco tesoros y gloria",
+                "response": "Ah, la codicia guía a muchos. Pero recuerda, el verdadero tesoro no siempre es oro, pequeño."
             },
             {
-                "text": "I want to help people en need",
-                "response": "Noble words! The world needs más heroes like you. Take this blessing para your journey."
+                "text": "Quiero ayudar a la gente necesitada",
+                "response": "¡Palabras nobles! El mundo necesita más héroes como tú. Toma esta bendición para tu viaje."
             },
             {
-                "text": "I'm lost y need directions",
-                "response": "Honesty is refreshing! The path forward es dangerous, but I will give you a map."
+                "text": "Estoy perdido y necesito direcciones",
+                "response": "¡Tu honestidad es refrescante! El camino adelante es peligroso, pero te daré un mapa."
             }
         ]
     },
@@ -120,19 +120,19 @@ const dialogue = {
         "type": "dialogue",
         "character": "Wise Elder",
         "character_emoji": "🧙‍♂️", 
-        "text": "Salutations, jeune adventurer! Je suis l'ancient Elder de ce village. Many travelers passent par ici, mais few ont le courage de face what lies ahead. Dites-moi, pourquoi do you journey à travers ces dangerous lands?",
+        "text": "Salutations, jeune aventurier ! Je suis l'ancien sage de ce village. De nombreux voyageurs passent par ici, mais peu ont le courage d'affronter ce qui vous attend. Dites-moi, pourquoi parcourez-vous ces terres dangereuses ?",
         "responses": [
             {
-                "text": "Je cherche treasure et glory", 
-                "response": "Ah, la greed pousse beaucoup. Mais remember, true treasure n'est pas toujours gold, petit one."
+                "text": "Je cherche trésor et gloire",
+                "response": "Ah, la cupidité pousse beaucoup de gens. Mais souvenez-vous, le véritable trésor n'est pas toujours de l'or, petit."
             },
             {
-                "text": "I want aider les gens en need",
-                "response": "Noble words! Le monde a besoin de plus heroes comme vous. Prenez cette blessing pour votre journey."
+                "text": "Je veux aider les gens dans le besoin",
+                "response": "Paroles nobles ! Le monde a besoin de plus de héros comme vous. Prenez cette bénédiction pour votre voyage."
             },
             {
-                "text": "Je suis lost et need directions",
-                "response": "Honesty est refreshing! Le path en avant est dangerous, mais I will give you une map."
+                "text": "Je suis perdu et j'ai besoin de directions",
+                "response": "Votre honnêteté est rafraîchissante ! Le chemin devant est dangereux, mais je vous donnerai une carte."
             }
         ]
     }
@@ -140,29 +140,29 @@ const dialogue = {
 
 const intro = {
     "spanish": {
-        "text": "Bienvenido al mundo de Hic Sunt Dracones. En este ancient reino, donde dragon y knight se encuentran en battle, tu adventure comienza en un small village cerca del dark forest. El wise anciano del village te ha encomendado una important quest: encontrar el legendary treasure escondido en la mysterious mountain. Pero cuidado, porque el path está lleno de danger y solo los brave pueden completar este perilous journey. Tu magic companion te ayudará, pero la choice final siempre será tuya.",
+        "text": "Bienvenido al mundo de Hic Sunt Dracones. En este antiguo reino, donde dragones y caballeros se enfrentan en batalla, tu aventura comienza en una pequeña aldea cerca del bosque oscuro. El sabio anciano del pueblo te ha encomendado una misión importante: encontrar el tesoro legendario escondido en la montaña misteriosa. Pero cuidado, el camino está lleno de peligros y solo los valientes podrán completar esta peligrosa travesía. Tu compañero mágico te ayudará, pero la decisión final siempre será tuya.",
         "options": [
-            "Explorar el dark forest",
-            "Dirigirse directamente a la mountain",
-            "Buscar más información en el village",
-            "Preparar equipment para el journey",
-            "Enter combat training",
-            "Visit the traveling trader",
-            "Try the memory training challenge",
-            "Attempt the word quiz challenge"
+            "Explorar el bosque oscuro",
+            "Dirigirse directamente a la montaña",
+            "Buscar más información en la aldea",
+            "Preparar el equipo para el viaje",
+            "Entrenar para el combate",
+            "Visitar al comerciante ambulante",
+            "Probar el desafío de memoria",
+            "Intentar el desafío de palabras"
         ]
     },
     "french": {
-        "text": "Bienvenue dans le monde de Hic Sunt Dracones. Dans ce ancient royaume, où dragon et knight se rencontrent en battle, votre adventure commence dans un small village près de la dark forêt. Le wise ancien du village vous a confié une important quest: trouver le legendary treasure caché dans la mysterious mountain. Mais attention, car le path est plein de danger et seuls les brave peuvent compléter ce perilous journey. Votre magic companion vous aidera, mais le choice final sera toujours vôtre.",
+        "text": "Bienvenue dans le monde de Hic Sunt Dracones. Dans ce royaume ancien, où dragons et chevaliers s'affrontent en bataille, votre aventure commence dans un petit village près de la forêt sombre. Le sage du village vous a confié une quête importante : trouver le trésor légendaire caché dans la montagne mystérieuse. Mais attention, le chemin est plein de dangers et seuls les courageux pourront accomplir ce périlleux voyage. Votre compagnon magique vous aidera, mais le choix final sera toujours le vôtre.",
         "options": [
-            "Explorer la dark forêt",
-            "Se diriger directement vers la mountain",
+            "Explorer la forêt sombre",
+            "Se diriger directement vers la montagne",
             "Chercher plus d'informations dans le village",
-            "Préparer l'equipment pour le journey",
-            "Enter combat training",
-            "Visit the traveling trader",
-            "Try the memory training challenge",
-            "Attempt the word quiz challenge"
+            "Préparer l'équipement pour le voyage",
+            "S'entraîner au combat",
+            "Visiter le marchand ambulant",
+            "Tenter le défi de mémoire",
+            "Essayer le quiz de mots"
         ]
     }
 };
@@ -171,7 +171,7 @@ const minigame = {
     "spanish": {
         "type": "minigame",
         "game_type": "memory",
-        "text": "You enter una mysterious library where books float en el air. The librarian ghost challenges you: 'Match the Spanish words with their English meanings para unlock the secret knowledge!'",
+        "text": "Entras en una biblioteca misteriosa donde los libros flotan en el aire. El fantasma bibliotecario te desafía: 'Empareja las palabras en español con sus significados en inglés para desbloquear el conocimiento secreto.'",
         "pairs": [
             {"spanish": "casa", "english": "house"},
             {"spanish": "agua", "english": "water"}, 
@@ -180,13 +180,13 @@ const minigame = {
             {"spanish": "corazón", "english": "heart"},
             {"spanish": "aventura", "english": "adventure"}
         ],
-        "success": "¡Excelente! The ghost is impressed. 'Take this ancient tome para your studies!'",
-        "failure": "The ghost sighs. 'Study more, young scholar. Come back cuando you're ready.'"
+        "success": "¡Excelente! El fantasma está impresionado. '¡Lleva este antiguo tomo para tus estudios!'",
+        "failure": "El fantasma suspira. 'Estudia más, joven erudito. Vuelve cuando estés listo.'"
     },
     "french": {
         "type": "minigame",
         "game_type": "memory",
-        "text": "Vous entrez dans une mysterious bibliothèque où books float dans l'air. Le librarian ghost vous challenge: 'Match les French words avec leurs English meanings pour unlock le secret knowledge!'",
+        "text": "Vous entrez dans une bibliothèque mystérieuse où les livres flottent dans l'air. Le fantôme bibliothécaire vous lance un défi : 'Associez les mots français à leur signification en anglais pour déverrouiller le savoir secret.'",
         "pairs": [
             {"french": "maison", "english": "house"},
             {"french": "eau", "english": "water"},
@@ -195,30 +195,30 @@ const minigame = {
             {"french": "cœur", "english": "heart"},
             {"french": "aventure", "english": "adventure"}
         ],
-        "success": "Excellent! Le ghost est impressed. 'Prenez ce ancient tome pour vos études!'",
-        "failure": "Le ghost soupire. 'Étudiez plus, young scholar. Revenez quand vous êtes ready.'"
+        "success": "Excellent ! Le fantôme est impressionné. 'Prenez ce vieux grimoire pour vos études !'",
+        "failure": "Le fantôme soupire. 'Étudiez davantage, jeune érudit. Revenez quand vous serez prêt.'"
     }
 };
 
 const mountain = {
     "spanish": {
-        "text": "Te diriges hacia la mysterious mountain, evitando el dark forest. El rocky path es difficult, pero tu determined spirit te mantiene moving forward. Después de hours of climbing, llegas a una ancient cave entrance. Strange symbols están carved en la stone, y una gentle breeze viene desde inside. Tu companion seems nervous pero ready para la adventure. En la distance, puedes hear el sound de running water y perhaps... voices?",
+        "text": "Te diriges hacia la montaña misteriosa, evitando el bosque oscuro. El sendero rocoso es difícil, pero tu espíritu decidido te mantiene avanzando. Después de horas de escalada, llegas a la entrada de una cueva antigua. Símbolos extraños están tallados en la piedra y una suave brisa sale del interior. Tu compañero parece nervioso pero listo para la aventura. A lo lejos puedes oír el sonido del agua corriendo y quizá... voces?",
         "options": [
-            "Entrar en la cave inmediatamente (posible combate)",
-            "Estudiar los strange symbols, quizás sea un puzzle",
-            "Buscar otro entrance around la mountain",
-            "Rest y prepare antes de entering",
-            "Call out para see si someone responds"
+            "Entrar en la cueva inmediatamente (posible combate)",
+            "Estudiar los símbolos extraños, quizás sea un acertijo",
+            "Buscar otra entrada alrededor de la montaña",
+            "Descansar y prepararse antes de entrar",
+            "Gritar para ver si alguien responde"
         ]
     },
     "french": {
-        "text": "Vous vous dirigez vers la mysterious mountain, évitant la dark forêt. Le rocky path est difficult, mais votre determined spirit vous maintient moving forward. Après hours de climbing, vous arrivez à une ancient cave entrance. Strange symbols sont carved dans la stone, et une gentle breeze vient depuis inside. Votre companion semble nervous mais ready pour la adventure. Dans la distance, vous pouvez hear le sound de running water et perhaps... voices?",
+        "text": "Vous vous dirigez vers la montagne mystérieuse, évitant la forêt sombre. Le chemin rocailleux est difficile, mais votre esprit déterminé vous pousse à avancer. Après des heures d'escalade, vous arrivez à l'entrée d'une vieille grotte. Des symboles étranges sont gravés dans la pierre et une douce brise en sort. Votre compagnon semble nerveux mais prêt pour l'aventure. Au loin, vous entendez le bruit de l'eau qui coule et peut-être... des voix ?",
         "options": [
-            "Entrer dans la cave immédiatement (peut-être un combat)",
-            "Étudier les strange symbols, peut-être un puzzle",
-            "Chercher un autre entrance autour de la mountain",
-            "Rest et prepare avant de entering",
-            "Call out pour voir si someone responds"
+            "Entrer dans la grotte immédiatement (peut-être un combat)",
+            "Étudier les symboles étranges, peut-être une énigme",
+            "Chercher une autre entrée autour de la montagne",
+            "Se reposer et se préparer avant d'entrer",
+            "Appeler pour voir si quelqu'un répond"
         ]
     }
 };
@@ -227,78 +227,78 @@ const puzzle = {
     "spanish": {
         "type": "puzzle",
         "puzzle_type": "riddle",
-        "text": "An ancient guardian blocks your path. The stone golem speaks in riddles: 'Tengo llaves pero no locks, space pero no room, you can enter pero no go outside. ¿Qué soy?' You must answer correctly to pass.",
+        "text": "Un antiguo guardián bloquea tu camino. El golem de piedra habla en acertijos: 'Tengo llaves pero no cerraduras, espacio pero no habitaciones, puedes entrar pero no salir. ¿Qué soy?' Debes responder correctamente para pasar.",
         "answer": "keyboard",
-        "hint": "Think about something you use para escribir...",
-        "success": "¡Correcto! The golem steps aside, impressed by tu wisdom. You may pass safely.",
-        "failure": "The golem shakes su head. 'Try again, pequeño adventurer.'"
+        "hint": "Piensa en algo que usas para escribir...",
+        "success": "¡Correcto! El golem se aparta, impresionado por tu sabiduría. Puedes pasar con seguridad.",
+        "failure": "El golem niega con la cabeza. 'Intenta de nuevo, pequeño aventurero.'"
     },
     "french": {
         "type": "puzzle",
         "puzzle_type": "riddle", 
-        "text": "Un ancient guardian bloque votre path. Le stone golem parle en riddles: 'J'ai des clés mais pas de locks, space mais pas de room, you can enter mais pas go outside. Qu'est-ce que je suis?' Vous devez answer correctly pour passer.",
+        "text": "Un gardien ancien bloque votre chemin. Le golem de pierre parle en énigmes : 'J'ai des touches mais pas de serrures, un espace mais pas de pièce, tu peux entrer mais pas sortir. Qu'est-ce que je suis ?' Vous devez répondre correctement pour passer.",
         "answer": "keyboard",
         "hint": "Pensez à quelque chose que vous utilisez pour écrire...",
-        "success": "Correct! Le golem s'écarte, impressionné par votre wisdom. Vous pouvez passer safely.",
-        "failure": "Le golem secoue sa tête. 'Essayez encore, petit adventurer.'"
+        "success": "Correct ! Le golem s'écarte, impressionné par votre sagesse. Vous pouvez passer en toute sécurité.",
+        "failure": "Le golem secoue la tête. 'Essayez encore, petit aventurier.'"
     }
 };
 
 const trader = {
     "spanish": {
         "type": "trading",
-        "text": "Encuentras a un mysterious trader en el path. El wise merchant tiene many precious items para sell. Sus eyes sparkle con greed mientras examina tu gold. '¡Welcome, brave adventurer!' dice con una sly smile. 'I have exactly lo que you need para tu dangerous journey ahead.'"
+        "text": "Encuentras a un comerciante misterioso en el camino. El sabio mercader tiene muchos objetos valiosos para vender. Sus ojos brillan con codicia mientras examina tu oro. '¡Bienvenido, valiente aventurero!' dice con una sonrisa astuta. 'Tengo exactamente lo que necesitas para tu peligroso viaje.'"
     },
     "french": {
         "type": "trading",
-        "text": "Vous trouvez un mysterious trader sur le path. Le wise merchant a many precious items pour sell. Ses eyes sparkle avec greed pendant qu'il examine votre gold. '¡Welcome, brave aventurier!' dit-il avec une sly smile. 'J'ai exactement ce que vous need pour votre dangerous journey ahead.'"
+        "text": "Vous trouvez un marchand mystérieux sur la route. Le sage commerçant possède de nombreux objets précieux à vendre. Ses yeux brillent de cupidité pendant qu'il examine votre or. 'Bienvenue, brave aventurier !' dit-il avec un sourire rusé. 'J'ai exactement ce qu'il vous faut pour votre voyage périlleux.'"
     }
 };
 
 const treasure = {
     "spanish": {
-        "text": "¡Felicidades, brave adventurer! Después de un long y dangerous journey, finalmente has encontrado el legendary treasure de Hic Sunt Dracones. El ancient chest se abre con un brilliant light, revelando no solo gold y precious gems, sino también ancient scrolls que contienen powerful knowledge. Tu wise companion está proud de tu achievement. Has demostrado que tienes el courage y wisdom para ser un true hero. El village celebrará tu victory, y tu name será recordado en legends por generations.",
+        "text": "¡Felicidades, valiente aventurero! Tras un largo y peligroso viaje, por fin has encontrado el tesoro legendario de Hic Sunt Dracones. El cofre antiguo se abre con una luz brillante, revelando no solo oro y gemas preciosas, sino también pergaminos que contienen un conocimiento poderoso. Tu sabio compañero está orgulloso de tu logro. Has demostrado que tienes el coraje y la sabiduría para ser un verdadero héroe. El pueblo celebrará tu victoria y tu nombre será recordado en las leyendas por generaciones.",
         "options": [
-            "Regresar al village como un hero",
-            "Explorar más mysteries de este realm",
-            "Compartir el treasure con tu companion",
-            "Continuar la adventure en nuevas lands"
+            "Regresar al pueblo como un héroe",
+            "Explorar más misterios de este reino",
+            "Compartir el tesoro con tu compañero",
+            "Continuar la aventura en nuevas tierras"
         ]
     },
     "french": {
-        "text": "Félicitations, brave aventurier! Après un long et dangerous journey, vous avez finalement trouvé le legendary treasure de Hic Sunt Dracones. Le ancient coffre s'ouvre avec une brilliant light, révélant non seulement gold et precious gems, mais aussi ancient scrolls qui contiennent powerful knowledge. Votre wise companion est proud de votre achievement. Vous avez démontré que vous avez le courage et wisdom pour être un true hero. Le village célébrera votre victory, et votre name sera rappelé dans legends pour generations.",
+        "text": "Félicitations, brave aventurier ! Après un long et dangereux voyage, vous avez finalement trouvé le trésor légendaire de Hic Sunt Dracones. Le coffre ancien s'ouvre avec une lumière éclatante, révélant non seulement de l'or et des gemmes précieuses, mais aussi des parchemins renfermant un savoir puissant. Votre sage compagnon est fier de votre exploit. Vous avez montré que vous avez le courage et la sagesse d'un véritable héros. Le village célébrera votre victoire et votre nom sera évoqué dans les légendes pendant des générations.",
         "options": [
-            "Retourner au village comme un hero",
-            "Explorer plus de mysteries de ce realm",
-            "Partager le treasure avec votre companion",
-            "Continuer la adventure dans nouvelles lands"
+            "Retourner au village en héros",
+            "Explorer davantage les mystères de ce royaume",
+            "Partager le trésor avec votre compagnon",
+            "Continuer l'aventure dans de nouvelles terres"
         ]
     }
 };
 
 const village = {
     "spanish": {
-        "text": "Decides permanecer en el village para gather more information. Los friendly villagers te cuentan ancient legends sobre el treasure. Una old woman te da una mysterious amulet que she claims will protect you durante tu dangerous journey. El village blacksmith offers to strengthen tu equipment, mientras que el wise priest shares valuable knowledge sobre las creatures que live en la mountain y forest. Tu companion enjoys el attention y rest.",
+        "text": "Decides permanecer en el pueblo para reunir más información. Los amables aldeanos te cuentan antiguas leyendas sobre el tesoro. Una anciana te entrega un amuleto misterioso que dice que te protegerá durante tu peligroso viaje. El herrero del pueblo ofrece reforzar tu equipo, mientras que el sacerdote sabio comparte valiosos conocimientos sobre las criaturas que viven en la montaña y el bosque. Tu compañero disfruta de la atención y descansa.",
         "options": [
-            "Accept el amulet de la old woman",
-            "Visit el blacksmith para equipment upgrades",
-            "Listen más stories del wise priest",
-            "Explore otras parts del village",
-            "Visit the wise elder for advice",
-            "Seek the ancient library puzzle",
-            "Leave el village ahora con nueva información"
+            "Aceptar el amuleto de la anciana",
+            "Visitar al herrero para mejorar el equipo",
+            "Escuchar más historias del sacerdote sabio",
+            "Explorar otras partes del pueblo",
+            "Visitar al anciano sabio en busca de consejo",
+            "Buscar el acertijo de la biblioteca antigua",
+            "Salir del pueblo ahora con nueva información"
         ]
     },
     "french": {
-        "text": "Vous décidez de rester dans le village pour gather plus d'informations. Les friendly villagers vous racontent ancient legends sur le treasure. Une old woman vous donne une mysterious amulet qu'elle claims vous protégera durant votre dangerous journey. Le village blacksmith offers de strengthener votre equipment, tandis que le wise priest partage valuable knowledge sur les creatures qui live dans la mountain et forêt. Votre companion profite de l'attention et rest.",
+        "text": "Vous décidez de rester dans le village pour recueillir davantage d'informations. Les habitants amicaux vous racontent d'anciennes légendes sur le trésor. Une vieille femme vous remet une amulette mystérieuse qu'elle affirme vous protéger durant votre périlleux voyage. Le forgeron du village propose de renforcer votre équipement tandis que le prêtre sage partage de précieux savoirs sur les créatures vivant dans la montagne et la forêt. Votre compagnon profite de l'attention et se repose.",
         "options": [
-            "Accept l'amulet de la old woman",
-            "Visit le blacksmith pour equipment upgrades",
-            "Listen plus de stories du wise priest",
-            "Explorer d'autres parts du village",
-            "Visit the wise elder for advice",
-            "Seek the ancient library puzzle",
-            "Leave le village maintenant avec nouvelle information"
+            "Accepter l'amulette de la vieille femme",
+            "Visiter le forgeron pour améliorer l'équipement",
+            "Écouter plus d'histoires du prêtre sage",
+            "Explorer d'autres parties du village",
+            "Consulter le sage du village pour des conseils",
+            "Chercher l'énigme de la bibliothèque ancienne",
+            "Quitter le village maintenant avec de nouvelles informations"
         ]
     }
 };
