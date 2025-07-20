@@ -31,6 +31,60 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 import { generateStory } from '../src/storyGenerator.js';
 
+const chapterTypeMap = {
+    combat: 'combat',
+    crafting: 'crafting',
+    dialogue: 'dialogue',
+    trader: 'trading',
+    puzzle: 'puzzle',
+    minigame: 'minigame',
+    wordquiz: 'wordquiz'
+};
+
+const storyProgression = {
+    'intro': {
+        0: 'chapter1',
+        1: 'mountain',
+        2: 'village',
+        3: 'village',
+        4: 'combat',
+        5: 'trader',
+        6: 'minigame',
+        7: 'wordquiz'
+    },
+    'chapter1': {
+        0: 'combat',
+        1: 'mountain',
+        2: 'dialogue',
+        3: 'crafting',
+        4: 'trader'
+    },
+    'combat': {},
+    'trader': {},
+    'mountain': {
+        0: 'combat',
+        1: 'puzzle',
+        2: 'village',
+        3: () => { addRandomItem(); loadStoryContent('mountain'); },
+        4: 'dialogue'
+    },
+    'village': {
+        0: () => { addItem('🧿'); loadStoryContent('intro'); },
+        1: 'crafting',
+        2: () => { addRandomItem(); loadStoryContent('village'); },
+        3: () => { addRandomItem(); loadStoryContent('village'); },
+        4: 'dialogue',
+        5: 'puzzle',
+        6: 'chapter1'
+    },
+    'treasure': {
+        0: () => { showGameMessage('¡Victory! Tu adventure continues...'); setTimeout(() => loadStoryContent('intro'), 2500); },
+        1: () => { showGameMessage('New mysteries await...'); setTimeout(() => loadStoryContent('chapter1'), 2500); },
+        2: () => { addItem('❤️'); showGameMessage('Your companion is grateful!'); setTimeout(() => loadStoryContent('intro'), 2500); },
+        3: () => { showGameMessage('The adventure never ends...'); setTimeout(() => loadStoryContent('intro'), 2500); }
+    }
+};
+
 function initializeStory() {
     const stored = JSON.parse(localStorage.getItem('storyContext') || '[]');
     if (stored.length > 0) {
@@ -424,13 +478,22 @@ function displayStoryContent() {
 
     // Display options
     if (storyData.options) {
-        const optionsHTML = storyData.options.map((option, index) => `
-            <div class="option-item" onclick="selectOption(${index})" data-key="${index}">
-                <span class="option-number">${index}</span>
-                <span class="option-text">${option}</span>
-            </div>
-        `).join('');
-        
+        const currentChapterName = window.currentChapter || 'intro';
+        const progression = storyProgression[currentChapterName] || {};
+
+        const optionsHTML = storyData.options.map((option, index) => {
+            const next = progression[index];
+            const typeKey = typeof next === 'string' ? chapterTypeMap[next] : null;
+            const tooltip = translations[typeKey] || translations['continue_story'] || 'continue';
+            const specialClass = typeKey ? ' special' : '';
+            return `
+                <div class="option-item${specialClass}" onclick="selectOption(${index})" data-key="${index}" title="${tooltip}">
+                    <span class="option-number">${index}</span>
+                    <span class="option-text">${option}</span>
+                </div>
+            `;
+        }).join('');
+
         optionsDiv.innerHTML = optionsHTML;
     }
 }
@@ -620,54 +683,6 @@ function handleStoryChoice(choiceIndex) {
     const currentChapter = window.currentChapter || 'intro';
     
     // Define story progression logic
-    const storyProgression = {
-        'intro': {
-            0: 'chapter1', // Explorar el dark forest
-            1: 'mountain',  // Dirigirse a la mountain
-            2: 'village',   // Buscar información en village
-            3: 'village',   // Preparar equipment
-            4: 'combat',    // Enter combat training
-            5: 'trader',    // Visit the traveling trader
-            6: 'minigame',  // Try memory training challenge
-            7: 'wordquiz'   // Attempt the word quiz challenge
-        },
-        'chapter1': {
-            0: 'combat', // Investigate light - leads to combat
-            1: 'mountain', // Avoid light and continue
-            2: 'dialogue', // Consult companion about the light
-            3: 'crafting', // Gather materials for crafting
-            4: 'trader' // Search for a nearby trader
-        },
-        'combat': {
-            // Combat is handled by the combat system
-        },
-        'trader': {
-            // Trading is handled by the trading system
-        },
-        'mountain': {
-            0: 'combat', // Enter cave could trigger combat
-            1: 'puzzle', // Study symbols may present a puzzle
-            2: 'village', // Find another entrance
-            3: () => { addRandomItem(); loadStoryContent('mountain'); }, // Rest
-            4: 'dialogue' // Call out to see if someone responds
-        },
-        'village': {
-            0: () => { addItem('🧿'); loadStoryContent('intro'); }, // Accept amulet
-            1: 'crafting', // Visit blacksmith - leads to crafting
-            2: () => { addRandomItem(); loadStoryContent('village'); }, // Listen to priest
-            3: () => { addRandomItem(); loadStoryContent('village'); }, // Explore village
-            4: 'dialogue', // Visit wise elder - leads to dialogue
-            5: 'puzzle', // Seek ancient library puzzle - leads to puzzle
-            6: 'chapter1' // Leave village
-        },
-        'treasure': {
-            0: () => { showGameMessage('¡Victory! Tu adventure continues...'); setTimeout(() => loadStoryContent('intro'), 2500); },
-            1: () => { showGameMessage('New mysteries await...'); setTimeout(() => loadStoryContent('chapter1'), 2500); },
-            2: () => { addItem('❤️'); showGameMessage('Your companion is grateful!'); setTimeout(() => loadStoryContent('intro'), 2500); },
-            3: () => { showGameMessage('The adventure never ends...'); setTimeout(() => loadStoryContent('intro'), 2500); }
-        }
-    };
-    
     const progression = storyProgression[currentChapter];
     if (progression && progression[choiceIndex] !== undefined) {
         const next = progression[choiceIndex];

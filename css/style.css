@@ -456,6 +456,21 @@ body {
     transform: translateX(5px);
 }
 
+.option-item.special {
+    position: relative;
+}
+
+.option-item.special::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: rgba(74, 158, 255, 0.3);
+    border-radius: 6px 0 0 6px;
+}
+
 .option-number {
     background: rgba(0, 0, 0, 0.8);
     color: var(--text-primary);
