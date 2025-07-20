@@ -509,6 +509,7 @@ function displayStoryContent() {
         Object.keys(translations).forEach(key => {
             const word = translations[key];
             if (replaced.has(word)) return;
+            if (word.length <= 5) return; // only process words longer than 5 characters, otherwiese we get errors in the message itself
             const regex = new RegExp(`\\b${word}\\b`, 'gi');
             storyHTML = storyHTML.replace(regex,
                 `<span class="translatable" data-word="${key}">${word}<span class="translation-tooltip">${key}</span></span>`
