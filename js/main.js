@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     createDropZone();
 });
 
-import { generateStory } from '../src/storyGenerator.js';
+import { generateStory, saveChoice } from '../src/storyGenerator.js';
 
 const chapterTypeMap = {
     combat: 'combat',
@@ -719,7 +719,14 @@ window.leaveWordQuiz = leaveWordQuiz;
 // Handle story progression based on choices
 function handleStoryChoice(choiceIndex) {
     const currentChapter = window.currentChapter || 'intro';
-    
+    const currentLang = window.currentLanguage || 'spanish';
+
+    // Save player's choice text for context
+    const storyData = currentStory[currentLang] || currentStory.spanish;
+    if (storyData && storyData.options && storyData.options[choiceIndex]) {
+        saveChoice(storyData.options[choiceIndex]);
+    }
+
     // Define story progression logic
     const progression = storyProgression[currentChapter];
     if (progression && progression[choiceIndex] !== undefined) {
