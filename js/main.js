@@ -505,12 +505,15 @@ function displayStoryContent() {
     
     // Add translation spans to words
     if (translations && Object.keys(translations).length > 0) {
+        const replaced = new Set();
         Object.keys(translations).forEach(key => {
             const word = translations[key];
+            if (replaced.has(word)) return;
             const regex = new RegExp(`\\b${word}\\b`, 'gi');
-            storyHTML = storyHTML.replace(regex, 
+            storyHTML = storyHTML.replace(regex,
                 `<span class="translatable" data-word="${key}">${word}<span class="translation-tooltip">${key}</span></span>`
             );
+            replaced.add(word);
         });
     }
     
