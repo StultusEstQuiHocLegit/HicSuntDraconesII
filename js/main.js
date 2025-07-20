@@ -187,6 +187,11 @@ async function loadAnimalsForGame() {
     try {
         const response = await fetch('resources/animals.json');
         animals = await response.json();
+        // Validate player animal
+        if (!animals[window.playerAnimal]) {
+            console.warn('Player animal not found:', window.playerAnimal);
+            window.playerAnimal = Object.keys(animals)[0];
+        }
     } catch (error) {
         console.error('Error loading animals:', error);
     }
@@ -1130,12 +1135,18 @@ function displayCombatInterface(storyData) {
     if (!window.currentCombat) {
         // Initialize combat
         const enemyName = storyData.enemy || 'wolf';
-        const enemyData = animals[enemyName];
-        const playerData = animals[window.playerAnimal];
-        
-        if (!enemyData || !playerData) {
-            console.error('Animal data not found:', enemyName, window.playerAnimal);
-            return;
+        let enemyData = animals[enemyName];
+        let playerData = animals[window.playerAnimal];
+
+        // Fallback if enemy or player data is missing
+        if (!enemyData) {
+            console.warn('Enemy data not found:', enemyName, '- defaulting to wolf');
+            enemyData = animals['wolf'] || Object.values(animals)[0];
+        }
+        if (!playerData) {
+            console.warn('Player data not found:', window.playerAnimal, '- defaulting to first animal');
+            window.playerAnimal = Object.keys(animals)[0];
+            playerData = animals[window.playerAnimal];
         }
         
         window.currentCombat = {
