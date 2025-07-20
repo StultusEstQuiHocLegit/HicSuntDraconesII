@@ -339,9 +339,16 @@ async function loadStoryContent(userInput = 'intro') {
 
 function restorePreviousStory() {
     const stored = JSON.parse(localStorage.getItem('storyContext') || '[]');
-    if (stored.length >= 2) {
+
+    // Remove the last entry (the current special interaction)
+    if (stored.length > 0) {
+        stored.pop();
+        localStorage.setItem('storyContext', JSON.stringify(stored));
+    }
+
+    if (stored.length > 0) {
         try {
-            const prev = stored[stored.length - 2];
+            const prev = stored[stored.length - 1];
             const text = typeof prev === 'string' ? prev : prev.text;
             currentStory = JSON.parse(text);
             window.currentChapter = prev.chapter || localStorage.getItem('currentChapter') || 'intro';
@@ -350,18 +357,8 @@ function restorePreviousStory() {
         } catch (e) {
             console.error('Failed to restore story', e);
         }
-    } else if (stored.length === 1) {
-        try {
-            const first = stored[0];
-            const text = typeof first === 'string' ? first : first.text;
-            currentStory = JSON.parse(text);
-            window.currentChapter = first.chapter || localStorage.getItem('currentChapter') || 'intro';
-            displayStoryContent();
-            return;
-        } catch (e) {
-            console.error('Failed to parse stored story', e);
-        }
     }
+
     loadStoryContent('intro');
 }
 
