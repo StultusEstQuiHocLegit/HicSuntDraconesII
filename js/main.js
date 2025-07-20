@@ -29,6 +29,31 @@ document.addEventListener('DOMContentLoaded', async function() {
         setupInventory();
         createDropZone();
     }
+    window.currentLanguage = '<?php echo $current_language; ?>';
+        if (window.currentLanguage !== 'english') {
+            loadTranslations();
+        }
+        if (document.getElementById('animalsGrid')) {
+            loadAnimals();
+        }
+        
+        // Form validation
+        function validateForm() {
+            const animalInput = document.getElementById('selectedAnimal');
+            const factionInput = document.querySelector('input[name="faction"]:checked');
+            
+            if (!animalInput || !animalInput.value) {
+                alert('Please select an animal companion!');
+                return false;
+            }
+            
+            if (!factionInput) {
+                alert('Please choose a faction!');
+                return false;
+            }
+            
+            return true;
+        }
 });
 
 import { generateStory, saveChoice } from '../src/storyGenerator.js';
