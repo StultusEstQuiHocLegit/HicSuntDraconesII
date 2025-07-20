@@ -82,7 +82,7 @@ $faction = $_COOKIE['hsd_faction'] ?? '';
         </main>
     </div>
 
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
     <script>
         window.currentLanguage = '<?php echo $language; ?>';
         window.currentAnimal = '<?php echo $animal; ?>';
