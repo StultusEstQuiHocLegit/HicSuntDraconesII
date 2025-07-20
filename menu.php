@@ -41,7 +41,7 @@ $faction = $_COOKIE['hsd_faction'] ?? '';
 <body>
     <div class="container">
         <header class="book-header">
-            <h1 class="title">SETTINGS</h1>
+            <h1 class="title" data-translate="settings" title="Settings">SETTINGS</h1>
             <a href="game.php" class="back-link" data-translate="back_to_game">← BACK TO ADVENTURE</a>
         </header>
 

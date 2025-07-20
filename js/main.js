@@ -916,7 +916,7 @@ function setupDropTarget(element, index) {
 function createDropZone() {
     const dropZone = document.createElement('div');
     dropZone.className = 'drop-zone';
-    dropZone.textContent = 'Drop here to remove item';
+    dropZone.textContent = translations['drop_here'] || 'Drop here to remove item';
     document.body.appendChild(dropZone);
     
     dropZone.addEventListener('dragover', function(e) {
@@ -1160,11 +1160,11 @@ function displayTradingInterface(storyData) {
     
     storyDiv.innerHTML = `
         <div class="trading-interface">
-            <h3>TRADER'S SHOP</h3>
-            <div class="gold-display">💰 Gold: ${window.playerGold}</div>
+            <h3>${translations['trader_shop'] || "TRADER'S SHOP"}</h3>
+            <div class="gold-display">💰 ${translations['gold'] ? translations['gold'][0].toUpperCase() + translations['gold'].slice(1) : 'Gold'}: ${window.playerGold}</div>
             
             <div class="trade-section">
-                <h4>BUY ITEMS</h4>
+                <h4>${translations['buy_items'] || 'BUY ITEMS'}</h4>
                 <div class="shop-items">
                     ${availableItems.map((item, index) => {
                         const canAfford = window.playerGold >= item.price;
@@ -1175,9 +1175,9 @@ function displayTradingInterface(storyData) {
                                 <div class="shop-item-emoji">${item.emoji}</div>
                                 <div>${item.name}</div>
                                 <div class="shop-item-price">${item.price} Gold</div>
-                                <button class="combat-btn" onclick="buyItem('${item.emoji}', ${item.price})" ${!canBuy ? 'disabled' : ''}>
+                                <button class="combat-btn" onclick="buyItem('${item.emoji}', ${item.price})" ${!canBuy ? 'disabled' : ''} title="Buy">
                                     <span class="key-indicator">${index + 1}</span>
-                                    BUY ${inventoryFull ? '(FULL)' : ''}
+                                    ${translations['buy'] || 'BUY'} ${inventoryFull ? '(FULL)' : ''}
                                 </button>
                             </div>
                         `;
@@ -1187,7 +1187,7 @@ function displayTradingInterface(storyData) {
             
             ${playerItems.length > 0 ? `
                 <div class="trade-section">
-                    <h4>SELL ITEMS</h4>
+                    <h4>${translations['sell_items'] || 'SELL ITEMS'}</h4>
                     <div class="sell-items">
                         ${playerItems.map((item, index) => {
                             const sellPrice = Math.max(1, Math.floor(Math.random() * 8) + 2); // 2-9 gold
@@ -1196,9 +1196,9 @@ function displayTradingInterface(storyData) {
                                 <div class="shop-item sell-item">
                                     <div class="shop-item-emoji">${item}</div>
                                     <div class="shop-item-price">${sellPrice} Gold</div>
-                                    <button class="combat-btn sell-btn" onclick="sellItem(${index}, ${sellPrice})">
+                                    <button class="combat-btn sell-btn" onclick="sellItem(${index}, ${sellPrice})" title="Sell">
                                         <span class="key-indicator">${letter}</span>
-                                        SELL
+                                        ${translations['sell'] || 'SELL'}
                                     </button>
                                 </div>
                             `;
@@ -1207,9 +1207,9 @@ function displayTradingInterface(storyData) {
                 </div>
             ` : ''}
             
-            <button class="combat-btn" onclick="leaveTrade()">
+            <button class="combat-btn" onclick="leaveTrade()" title="Leave Shop">
                 <span class="key-indicator">0</span>
-                LEAVE SHOP
+                ${translations['leave_shop'] || 'LEAVE SHOP'}
             </button>
         </div>
     `;
@@ -1358,22 +1358,22 @@ function displayPuzzle(storyData) {
     
     storyDiv.innerHTML = `
         <div class="puzzle-interface">
-            <h3>🧩 PUZZLE CHALLENGE</h3>
+            <h3>🧩 ${translations['puzzle_challenge'] || 'PUZZLE CHALLENGE'}</h3>
             <p>${storyData.text}</p>
             <div class="puzzle-input">
-                <input type="text" id="puzzleAnswer" placeholder="Enter your answer..." class="answer-input">
+                <input type="text" id="puzzleAnswer" placeholder="${translations['enter_answer'] || 'Enter your answer...'}" class="answer-input">
                 <div class="puzzle-buttons">
-                    <button class="combat-btn" onclick="checkPuzzleAnswer('${storyData.answer}')">
+                    <button class="combat-btn" onclick="checkPuzzleAnswer('${storyData.answer}')" title="Submit">
                         <span class="key-indicator">1</span>
-                        SUBMIT
+                        ${translations['submit'] || 'SUBMIT'}
                     </button>
-                    <button class="combat-btn" onclick="showPuzzleHint('${storyData.hint}')">
+                    <button class="combat-btn" onclick="showPuzzleHint('${storyData.hint}')" title="Hint">
                         <span class="key-indicator">2</span>
-                        HINT
+                        ${translations['hint'] || 'HINT'}
                     </button>
-                    <button class="combat-btn" onclick="leavePuzzle()">
+                    <button class="combat-btn" onclick="leavePuzzle()" title="Leave">
                         <span class="key-indicator">0</span>
-                        LEAVE
+                        ${translations['leave'] || 'LEAVE'}
                     </button>
                 </div>
             </div>
@@ -1406,7 +1406,8 @@ function checkPuzzleAnswer(correctAnswer) {
 }
 
 function showPuzzleHint(hint) {
-    showGameMessage(`Hint: ${hint}`);
+    const label = translations['hint'] || 'Hint';
+    showGameMessage(`${label}: ${hint}`);
 }
 
 function leavePuzzle() {
@@ -1437,7 +1438,7 @@ function displayDialogue(storyData) {
     `).join('') + `
         <div class="story-option" onclick="leaveDialogue()">
             <span class="option-number">0</span>
-            <span class="option-text">Leave conversation</span>
+            <span class="option-text" title="Leave conversation">${translations['leave_conversation'] || 'Leave conversation'}</span>
         </div>
     `;
 }
@@ -1468,32 +1469,32 @@ function displayCrafting(storyData) {
     
     storyDiv.innerHTML = `
         <div class="crafting-interface">
-            <h3>🔨 CRAFTING FORGE</h3>
+            <h3>🔨 ${translations['crafting_forge'] || 'CRAFTING FORGE'}</h3>
             <p>${storyData.text}</p>
             <div class="recipes">
                 ${storyData.recipes.map((recipe, index) => {
-                    const hasIngredients = recipe.ingredients.every(ingredient => 
+                    const hasIngredients = recipe.ingredients.every(ingredient =>
                         playerInventory.includes(ingredient)
                     );
                     return `
                         <div class="recipe ${hasIngredients ? '' : 'missing-ingredients'}">
                             <div class="recipe-name">${recipe.name_local} (${recipe.name})</div>
                             <div class="recipe-ingredients">
-                                Needs: ${recipe.ingredients.join(' + ')} → ${recipe.result}
+                                ${translations['needs'] || 'Needs'}: ${recipe.ingredients.join(' + ')} → ${recipe.result}
                             </div>
                             <div class="recipe-description">${recipe.description}</div>
-                            <button class="combat-btn" onclick="craftItem(${index})" ${hasIngredients ? '' : 'disabled'}>
+                            <button class="combat-btn" onclick="craftItem(${index})" ${hasIngredients ? '' : 'disabled'} title="Craft">
                                 <span class="key-indicator">${index + 1}</span>
-                                CRAFT
+                                ${translations['craft'] || 'CRAFT'}
                             </button>
                         </div>
                     `;
                 }).join('')}
             </div>
             <div style="margin-top: 2rem;">
-                <button class="combat-btn" onclick="leaveCrafting()">
+                <button class="combat-btn" onclick="leaveCrafting()" title="Leave Forge">
                     <span class="key-indicator">0</span>
-                    LEAVE FORGE
+                    ${translations['leave_forge'] || 'LEAVE FORGE'}
                 </button>
             </div>
         </div>
@@ -1553,12 +1554,12 @@ function displayMinigame(storyData) {
     
     storyDiv.innerHTML = `
         <div class="minigame-interface">
-            <h3>🎮 MEMORY CHALLENGE</h3>
+            <h3>🎮 ${translations['memory_challenge'] || 'MEMORY CHALLENGE'}</h3>
             <p>${storyData.text}</p>
             <div id="memoryGame" class="memory-game">
                 <!-- Game will be populated by JavaScript -->
             </div>
-            <button class="combat-btn" onclick="leaveMinigame()">0. LEAVE</button>
+            <button class="combat-btn" onclick="leaveMinigame()">0. ${translations['leave'] || 'LEAVE'}</button>
         </div>
     `;
     
@@ -1583,7 +1584,7 @@ function initializeMemoryGame(storyData) {
         <div class="memory-score">Score: ${score}/${pairs.length} | Attempts: ${attempts}</div>
         <div class="memory-matching-game">
             <div class="memory-left-column">
-                <h4>Match these words:</h4>
+                <h4>${translations['match_words'] || 'Match these words:'}</h4>
                 ${pairs.map((pair, index) => {
                     const local = storyData.pairs[index][window.currentLanguage === 'french' ? 'french' : 'spanish'];
                     return `
@@ -1595,7 +1596,7 @@ function initializeMemoryGame(storyData) {
                 }).join('')}
             </div>
             <div class="memory-right-column">
-                <h4>To their meanings:</h4>
+                <h4>${translations['to_meanings'] || 'To their meanings:'}</h4>
                 ${shuffledEnglish.map((english, index) => {
                     const letter = String.fromCharCode(65 + index); // A, B, C, etc.
                     return `
@@ -1724,10 +1725,10 @@ function displayWordQuiz(storyData) {
     storyDiv.innerHTML = `
         <div class="word-quiz-interface">
             <div class="quiz-progress"><div class="quiz-progress-fill" style="width:0%"></div></div>
-            <h3>📝 WORD CHALLENGE</h3>
+            <h3>📝 ${translations['word_challenge'] || 'WORD CHALLENGE'}</h3>
             <div id="quizWord" class="quiz-word"></div>
             <div id="quizOptions" class="quiz-options"></div>
-            <button class="combat-btn" onclick="leaveWordQuiz()">0. LEAVE</button>
+            <button class="combat-btn" onclick="leaveWordQuiz()">0. ${translations['leave'] || 'LEAVE'}</button>
         </div>
     `;
 
