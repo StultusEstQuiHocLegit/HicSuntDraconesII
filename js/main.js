@@ -587,6 +587,7 @@ function selectOption(index) {
         }, 200);
     }
 }
+window.selectOption = selectOption;
 
 // Handle story progression based on choices
 function handleStoryChoice(choiceIndex) {
