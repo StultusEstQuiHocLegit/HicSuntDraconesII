@@ -41,6 +41,18 @@ const chapterTypeMap = {
     wordquiz: 'wordquiz'
 };
 
+function detectOptionType(option) {
+    const text = option.toLowerCase();
+    if (/combat|battle|fight|training/.test(text)) return 'combat';
+    if (/trader|merchant|shop|trade/.test(text)) return 'trading';
+    if (/puzzle|enigma|riddle/.test(text)) return 'puzzle';
+    if (/dialogue|talk|speak|conversation/.test(text)) return 'dialogue';
+    if (/craft|forge|smith/.test(text)) return 'crafting';
+    if (/minigame|memory|challenge/.test(text)) return 'minigame';
+    if (/quiz/.test(text)) return 'wordquiz';
+    return null;
+}
+
 const storyProgression = {
     'intro': {
         0: 'chapter1',
@@ -483,7 +495,10 @@ function displayStoryContent() {
 
         const optionsHTML = storyData.options.map((option, index) => {
             const next = progression[index];
-            const typeKey = typeof next === 'string' ? chapterTypeMap[next] : null;
+            let typeKey = typeof next === 'string' ? chapterTypeMap[next] : null;
+            if (!typeKey) {
+                typeKey = detectOptionType(option);
+            }
             const tooltip = translations[typeKey] || translations['continue_story'] || 'continue';
             const specialClass = typeKey ? ' special' : '';
             return `
