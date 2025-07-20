@@ -12,21 +12,23 @@ const inventory = window.inventory;
 const playerGold = window.playerGold;
 
 document.addEventListener('DOMContentLoaded', async function() {
-    await loadAnimalsForGame();
-    await loadItems();
-    await loadTranslations();
-    const langChanged = localStorage.getItem('languageChangedTo');
-    if (langChanged) {
-        const langName = translations[langChanged] || langChanged;
-        const template = translations['language_switched'] ||
-            'Language switched. Future stories will be generated in {language}.';
-        showGameMessage(template.replace('{language}', langName));
-        localStorage.removeItem('languageChangedTo');
+    if (document.getElementById('storyText')) {
+        await loadAnimalsForGame();
+        await loadItems();
+        await loadTranslations();
+        const langChanged = localStorage.getItem('languageChangedTo');
+        if (langChanged) {
+            const langName = translations[langChanged] || langChanged;
+            const template = translations['language_switched'] ||
+                'Language switched. Future stories will be generated in {language}.';
+            showGameMessage(template.replace('{language}', langName));
+            localStorage.removeItem('languageChangedTo');
+        }
+        initializeStory();
+        setupKeyboardNavigation();
+        setupInventory();
+        createDropZone();
     }
-    initializeStory();
-    setupKeyboardNavigation();
-    setupInventory();
-    createDropZone();
 });
 
 import { generateStory, saveChoice } from '../src/storyGenerator.js';
@@ -1894,3 +1896,7 @@ function shuffleArray(arr) {
         .sort((a, b) => a.sort - b.sort)
         .map(({ value }) => value);
 }
+
+// Expose certain functions for non-module scripts (e.g., index.php)
+window.loadTranslations = loadTranslations;
+window.loadAnimals = loadAnimals;
