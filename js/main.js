@@ -758,6 +758,45 @@ function showGameMessage(message) {
     }, 2000);
 }
 
+// Show game message that requires user to close it
+function showClosableMessage(message, onClose) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'game-message closable';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'message-close-btn';
+    closeBtn.textContent = 'X';
+    closeBtn.title = translations['close'] || 'Close';
+
+    const textDiv = document.createElement('div');
+    textDiv.className = 'message-text';
+    textDiv.textContent = message;
+
+    messageDiv.appendChild(closeBtn);
+    messageDiv.appendChild(textDiv);
+    document.body.appendChild(messageDiv);
+
+    function cleanup() {
+        if (document.body.contains(messageDiv)) {
+            document.body.removeChild(messageDiv);
+        }
+        document.removeEventListener('keydown', onKeydown);
+        if (typeof onClose === 'function') onClose();
+    }
+
+    function onKeydown(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            cleanup();
+        }
+    }
+
+    closeBtn.addEventListener('click', cleanup);
+    document.addEventListener('keydown', onKeydown);
+
+    closeBtn.focus();
+}
+
 // Confirmation dialog for resetting character
 function confirmReset() {
     return confirm(translations['confirm_reset_character'] || 'Are you sure you want to reset your character?');
@@ -1489,8 +1528,7 @@ function displayDialogue(storyData) {
 }
 
 function selectDialogueResponse(index, response) {
-    showGameMessage(response);
-    setTimeout(() => {
+    showClosableMessage(response, () => {
         if (Math.random() > 0.5) {
             addRandomItem();
         } else {
@@ -1498,7 +1536,7 @@ function selectDialogueResponse(index, response) {
             updateGoldAndInventory();
         }
         loadStoryContent('intro');
-    }, 2500);
+    });
 }
 
 function leaveDialogue() {
