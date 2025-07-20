@@ -49,6 +49,12 @@
     "life": "Vida",
     "attack": "Ataque",
     "defense": "Defensa",
+    "continue_story": "continuar la historia",
+    "crafting": "creaci\u00f3n",
+    "dialogue": "di\u00e1logo",
+    "puzzle": "rompecabezas",
+    "minigame": "minijuego",
+    "wordquiz": "cuestionario de palabras",
     "dragon": "dragón",
     "knight": "caballero",
     "sword": "espada",
@@ -517,7 +523,6 @@
     "bit": "poco",
     "friend": "amigo",
     "hit": "golpear",
-    "needs": "necesidades",
     "nice": "lindo",
     "playing": "jugando",
     "probably": "probablemente",
@@ -551,7 +556,6 @@
     "community": "comunidad",
     "data": "datos",
     "late": "tarde",
-    "leave": "dejar",
     "north": "norte",
     "saw": "sierra",
     "special": "especial",
@@ -569,7 +573,6 @@
     "stay": "permanecer",
     "taken": "tomado",
     "age": "edad",
-    "buy": "comprar",
     "deal": "trato",
     "rather": "bastante",
     "reason": "razón",
@@ -1216,7 +1219,6 @@
     "nature": "naturaleza",
     "numbers": "números",
     "quick": "rápido",
-    "sell": "vender",
     "significant": "significativo",
     "studies": "estudios",
     "unless": "a menos que",
@@ -3097,10 +3099,4 @@
     "solutions": "soluciones",
     "sons": "hijos",
     "stations": "estaciones"
-    ,"continue_story": "continuar la historia"
-    ,"crafting": "creaci\u00f3n"
-    ,"dialogue": "di\u00e1logo"
-    ,"puzzle": "rompecabezas"
-    ,"minigame": "minijuego"
-    ,"wordquiz": "cuestionario de palabras"
 }
