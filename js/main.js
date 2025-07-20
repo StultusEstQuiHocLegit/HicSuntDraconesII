@@ -470,11 +470,18 @@ function restorePreviousStory() {
 function displayStoryContent() {
     const storyDiv = document.getElementById('storyText');
     const optionsDiv = document.getElementById('gameOptions');
-    
+
     if (!storyDiv || !optionsDiv) return;
 
     const currentLang = window.currentLanguage || 'spanish';
-    const storyData = currentStory[currentLang] || currentStory.spanish;
+    const storyData = (currentStory && (currentStory[currentLang] || currentStory.spanish)) || null;
+
+    // If no story data exists yet, try loading the intro chapter
+    if (!storyData) {
+        console.warn('No story data found, generating intro.');
+        loadStoryContent('intro');
+        return;
+    }
 
     // Check if this is a special interaction type
     if (storyData.type === 'combat') {
