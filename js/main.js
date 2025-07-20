@@ -14,7 +14,7 @@ const playerGold = window.playerGold;
 document.addEventListener('DOMContentLoaded', async function() {
     await loadAnimalsForGame();
     await loadItems();
-    loadTranslations();
+    await loadTranslations();
     initializeStory();
     setupKeyboardNavigation();
     setupInventory();
