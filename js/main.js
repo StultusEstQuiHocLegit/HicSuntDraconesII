@@ -420,12 +420,15 @@ function hideLoading() {
 
 // Load story content
 async function loadStoryContent(userInput = 'intro') {
-    // Show loading spinner
     showLoading();
     try {
-        // Use the OpenAI-based generator instead of fetching a static file
         const aiStory = await generateStory(userInput, currentLanguage);
-        currentStory = aiStory;
+        // Fix: Only parse if it's a string
+        if (typeof aiStory === 'string') {
+            currentStory = JSON.parse(aiStory);
+        } else {
+            currentStory = aiStory;
+        }
         window.currentChapter = userInput;
         displayStoryContent();
     } catch (error) {
@@ -434,7 +437,6 @@ async function loadStoryContent(userInput = 'intro') {
             loadStoryContent('intro');
         }
     } finally {
-        // Hide loading spinner
         hideLoading();
     }
 }
