@@ -411,6 +411,13 @@ function getContextTexts() {
   );
 }
 
+// Save player's choice to context
+function saveChoice(choiceText) {
+  const context = getStoryContext();
+  context.push({ chapter: 'choice', text: choiceText });
+  localStorage.setItem('storyContext', JSON.stringify(context.slice(-20)));
+}
+
 // Save new AI-generated text to localStorage
 function saveToContext(chapter, newText) {
   const context = getStoryContext();
@@ -499,4 +506,4 @@ Please answer in JSON containing only the key \"${language}\" and ensure that th
   return storyData;
 }
 
-export { generateStory };
+export { generateStory, saveChoice };
