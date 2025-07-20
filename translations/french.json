@@ -49,6 +49,12 @@
     "life": "Vie",
     "attack": "Attaque",
     "defense": "Défense",
+    "continue_story": "continuer l'histoire",
+    "crafting": "artisanat",
+    "dialogue": "dialogue",
+    "puzzle": "\u00e9nigme",
+    "minigame": "mini-jeu",
+    "wordquiz": "quiz de mots",
     "dragon": "dragon",
     "knight": "chevalier",
     "sword": "épée",
@@ -517,7 +523,6 @@
     "bit": "peu",
     "friend": "ami",
     "hit": "frapper",
-    "needs": "besoins",
     "nice": "bon",
     "playing": "jouant",
     "probably": "probablement",
@@ -551,7 +556,6 @@
     "community": "communauté",
     "data": "données",
     "late": "en retard",
-    "leave": "partir",
     "north": "nord",
     "saw": "scie",
     "special": "spécial",
@@ -569,7 +573,6 @@
     "stay": "rester",
     "taken": "pris",
     "age": "âge",
-    "buy": "acheter",
     "deal": "accord",
     "rather": "plutôt",
     "reason": "raison",
@@ -1216,7 +1219,6 @@
     "nature": "nature",
     "numbers": "Nombres",
     "quick": "rapide",
-    "sell": "vendre",
     "significant": "significatif",
     "studies": "études",
     "unless": "sauf si",
@@ -3097,10 +3099,4 @@
     "solutions": "solutions",
     "sons": "fils",
     "stations": "stations"
-    ,"continue_story": "continuer l'histoire"
-    ,"crafting": "artisanat"
-    ,"dialogue": "dialogue"
-    ,"puzzle": "\u00e9nigme"
-    ,"minigame": "mini-jeu"
-    ,"wordquiz": "quiz de mots"
 }
