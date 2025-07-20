@@ -364,7 +364,7 @@ const wordquiz = {
 
 
 // Determine which examples to inject into the prompt
-async function loadTemplates(chapter) {
+async function loadTemplates(chapter, language) {
   const textExamples = [chapter1, intro, village, mountain, treasure];
 
   const specialMap = {
@@ -377,11 +377,10 @@ async function loadTemplates(chapter) {
     minigame,
   };
 
-  if (specialMap[chapter]) {
-    return [specialMap[chapter]];
-  }
+  let templates = specialMap[chapter] ? [specialMap[chapter]] : textExamples;
 
-  return textExamples;
+  // Only keep the currently selected language for each template
+  return templates.map(t => ({ [language]: t[language] }));
 }
 
 // Get last 20 AI-generated texts from localStorage
@@ -412,21 +411,21 @@ function saveToContext(chapter, newText) {
 // }
 
 // Generate story using AI
-async function generateStory(userInput) {
-  const templates = await loadTemplates(userInput);
+async function generateStory(userInput, language = 'spanish') {
+  const templates = await loadTemplates(userInput, language);
   const context = getContextTexts();
 
   // Build the prompt for AI
   const isSpecial = ['combat','crafting','dialogue','wordquiz','puzzle','trader','minigame'].includes(userInput);
   const prompt = `
-You are a story generator. Use the following examples as templates for your output format:
+You are a story generator. Respond exclusively in ${language}. Use the following examples as templates for your output format:
 ${templates.map((t, i) => `Example ${i + 1}:\n${JSON.stringify(t, null, 2)}`).join('\n\n')}
 Available chapters: chapter1, combat, crafting, dialogue, wordquiz, intro, village, mountain, puzzle, trader, treasure, minigame.
 ${isSpecial ? '' : 'When creating a normal text card, provide five options and ensure one or two lead logically to special types such as combat, crafting, dialogue, wordquiz, puzzle, trader or minigame.'}
-Continue the story, keeping the style and format above. Here is the recent story context:
+Continue the story in ${language}, keeping the style and format above. Here is the recent story context:
 ${context.join('\n')}
 User input: ${userInput}
-Please make sure to answer exactly in the same JSON format as the examples provided and ensure that the story continues logically from the last context.
+Please answer in JSON containing only the key \"${language}\" and ensure that the story continues logically from the last context.
   `;
 
   // Log the prompt sent to the AI

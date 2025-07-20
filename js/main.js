@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadAnimalsForGame();
     await loadItems();
     await loadTranslations();
+    const langChanged = localStorage.getItem('languageChangedTo');
+    if (langChanged) {
+        showGameMessage(`Language switched. Future stories will be generated in ${langChanged}.`);
+        localStorage.removeItem('languageChangedTo');
+    }
     initializeStory();
     setupKeyboardNavigation();
     setupInventory();
@@ -294,6 +299,7 @@ function displayStats(stats) {
 
 // Change language
 function changeLanguage(newLanguage) {
+    localStorage.setItem('languageChangedTo', newLanguage);
     document.cookie = `hsd_language=${newLanguage}; expires=${new Date(Date.now() + 10 * 365 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
     location.reload();
 }
@@ -322,7 +328,7 @@ async function loadStoryContent(userInput = 'intro') {
     showLoading();
     try {
         // Use the OpenAI-based generator instead of fetching a static file
-        const aiStory = await generateStory(userInput);
+        const aiStory = await generateStory(userInput, currentLanguage);
         currentStory = aiStory;
         window.currentChapter = userInput;
         displayStoryContent();
