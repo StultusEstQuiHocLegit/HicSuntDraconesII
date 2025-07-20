@@ -49,6 +49,12 @@
     "life": "Life",
     "attack": "Attack",
     "defense": "Defense",
+    "continue_story": "continue the story",
+    "crafting": "crafting",
+    "dialogue": "dialogue",
+    "puzzle": "puzzle",
+    "minigame": "minigame",
+    "wordquiz": "word quiz",
     "dragon": "dragon",
     "knight": "knight",
     "sword": "sword",
@@ -517,7 +523,6 @@
     "bit": "bit",
     "friend": "friend",
     "hit": "hit",
-    "needs": "needs",
     "nice": "nice",
     "playing": "playing",
     "probably": "probably",
@@ -551,7 +556,6 @@
     "community": "community",
     "data": "data",
     "late": "late",
-    "leave": "leave",
     "north": "north",
     "saw": "saw",
     "special": "special",
@@ -569,7 +573,6 @@
     "stay": "stay",
     "taken": "taken",
     "age": "age",
-    "buy": "buy",
     "deal": "deal",
     "rather": "rather",
     "reason": "reason",
@@ -1216,7 +1219,6 @@
     "nature": "nature",
     "numbers": "numbers",
     "quick": "quick",
-    "sell": "sell",
     "significant": "significant",
     "studies": "studies",
     "unless": "unless",
@@ -3084,7 +3086,6 @@
     "operate": "operate",
     "outstanding": "outstanding",
     "permission": "permission",
-    "porn": "porn",
     "racing": "racing",
     "recommended": "recommended",
     "regulations": "regulations",
@@ -3098,10 +3099,4 @@
     "solutions": "solutions",
     "sons": "sons",
     "stations": "stations"
-    ,"continue_story": "continue the story"
-    ,"crafting": "crafting"
-    ,"dialogue": "dialogue"
-    ,"puzzle": "puzzle"
-    ,"minigame": "minigame"
-    ,"wordquiz": "word quiz"
 }
