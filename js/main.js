@@ -590,6 +590,29 @@ function setupKeyboardNavigation() {
                 return;
             }
         }
+
+        // Handle dialogue options (number keys)
+        const dialogueInterface = document.querySelector('.dialogue-interface');
+        if (dialogueInterface) {
+            if (key >= '1' && key <= '9') {
+                const idx = parseInt(key) - 1;
+                const options = document.querySelectorAll('.story-option');
+                if (idx < options.length - 1) { // last is leave
+                    options[idx].click();
+                    event.preventDefault();
+                    return;
+                }
+            }
+            // 0 for leave
+            if (key === '0') {
+                const options = document.querySelectorAll('.story-option');
+                if (options.length > 0) {
+                    options[options.length - 1].click();
+                    event.preventDefault();
+                    return;
+                }
+            }
+        }
         
         // Handle crafting controls
         const craftingInterface = document.querySelector('.crafting-interface');
