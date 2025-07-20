@@ -720,6 +720,11 @@ function showGameMessage(message) {
     }, 2000);
 }
 
+// Confirmation dialog for resetting character
+function confirmReset() {
+    return confirm(translations['confirm_reset_character'] || 'Are you sure you want to reset your character?');
+}
+
 // Enhanced story display with animations
 function displayStoryContentWithAnimation() {
     const storyDiv = document.getElementById('storyText');
@@ -733,7 +738,7 @@ function displayStoryContentWithAnimation() {
 
 // Inventory management
 function useItem(index) {
-    if (confirm('Use this item?')) {
+    if (confirm(translations['use_item_question'] || 'Use this item?')) {
         // Remove item from inventory
         const form = document.createElement('form');
         form.method = 'POST';
@@ -757,7 +762,7 @@ function useItem(index) {
 // Add item to inventory (for game logic)
 function addItem(item) {
     if (window.inventory.length >= window.maxInventorySlots) {
-        showGameMessage("Inventory is full! You need to use or drop an item first.");
+        showGameMessage(translations['inventory_full_drop'] || 'Inventory is full! You need to use or drop an item first.');
         return false;
     }
     
@@ -798,7 +803,8 @@ function createItemTooltip(item) {
         `;
     } else {
         // Fallback for unknown items
-        tooltip.innerHTML = `<div class="tooltip-name">Objeto misterioso</div>`;
+        const name = translations['mysterious_object'] || 'Mysterious object';
+        tooltip.innerHTML = `<div class="tooltip-name">${name}</div>`;
     }
     
     return tooltip;
@@ -927,7 +933,7 @@ function createDropZone() {
         e.preventDefault();
         const index = parseInt(e.dataTransfer.getData('text/plain'));
         
-        if (confirm('Remove this item from inventory?')) {
+        if (confirm(translations['confirm_remove_item'] || 'Remove this item from inventory?')) {
             removeInventoryItem(index);
         }
         
@@ -1030,7 +1036,7 @@ function displayCombatInterface(storyData) {
     
     storyDiv.innerHTML = `
         <div class="combat-interface">
-            <h3>COMBAT!</h3>
+            <h3>${translations['combat'] || 'COMBAT!'}</h3>
             <div class="combat-stats">
                 <div class="combatant">
                     <div class="combatant-name">${combat.player.name.toUpperCase()}</div>
@@ -1038,7 +1044,7 @@ function displayCombatInterface(storyData) {
                     <div class="health-bar">
                         <div class="health-fill" style="width: ${(combat.player.health / combat.player.maxHealth) * 100}%"></div>
                     </div>
-                    <div>HP: ${combat.player.health}/${combat.player.maxHealth}</div>
+                    <div>${translations['hp'] || 'HP:'} ${combat.player.health}/${combat.player.maxHealth}</div>
                 </div>
                 <div class="combatant enemy">
                     <div class="combatant-name">${combat.enemy.name.toUpperCase()}</div>
@@ -1046,21 +1052,21 @@ function displayCombatInterface(storyData) {
                     <div class="health-bar">
                         <div class="health-fill" style="width: ${(combat.enemy.health / combat.enemy.maxHealth) * 100}%"></div>
                     </div>
-                    <div>HP: ${combat.enemy.health}/${combat.enemy.maxHealth}</div>
+                    <div>${translations['hp'] || 'HP:'} ${combat.enemy.health}/${combat.enemy.maxHealth}</div>
                 </div>
             </div>
             <div class="combat-actions">
                 <button class="combat-btn" onclick="combatAction('attack')">
                     <span class="key-indicator">1</span>
-                    ATTACK
+                    ${translations['attack'] || 'ATTACK'}
                 </button>
                 <button class="combat-btn" onclick="combatAction('defend')">
                     <span class="key-indicator">2</span>
-                    DEFEND
+                    ${translations['defend'] || 'DEFEND'}
                 </button>
                 <button class="combat-btn" onclick="combatAction('flee')">
                     <span class="key-indicator">0</span>
-                    FLEE
+                    ${translations['flee'] || 'FLEE'}
                 </button>
             </div>
         </div>
@@ -1077,11 +1083,11 @@ function combatAction(action) {
     if (action === 'attack') {
         const damage = Math.max(1, combat.player.stats.attack + Math.floor(Math.random() * 5) - combat.enemy.stats.defense);
         combat.enemy.health = Math.max(0, combat.enemy.health - damage);
-        message = `You deal ${damage} damage!`;
+        message = (translations['player_deal_damage'] || 'You deal {damage} damage!').replace('{damage}', damage);
     } else if (action === 'defend') {
-        message = 'You brace for the enemy attack!';
+        message = translations['brace_enemy_attack'] || 'You brace for the enemy attack!';
     } else if (action === 'flee') {
-        showGameMessage('You fled from combat!');
+        showGameMessage(translations['fled_combat'] || 'You fled from combat!');
         window.currentCombat = null;
         setTimeout(() => restorePreviousStory(), 1500);
         return;
@@ -1089,7 +1095,7 @@ function combatAction(action) {
     
     // Check if enemy defeated
     if (combat.enemy.health <= 0) {
-        showGameMessage('Victory! You defeated the enemy!');
+        showGameMessage(translations['victory_defeated_enemy'] || 'Victory! You defeated the enemy!');
         addRandomItem();
         window.currentCombat = null;
         setTimeout(() => restorePreviousStory(), 2000);
@@ -1100,16 +1106,16 @@ function combatAction(action) {
     const enemyDamage = Math.max(1, combat.enemy.stats.attack + Math.floor(Math.random() * 5) - combat.player.stats.defense);
     if (action !== 'defend') {
         combat.player.health = Math.max(0, combat.player.health - enemyDamage);
-        message += ` Enemy deals ${enemyDamage} damage!`;
+        message += ' ' + (translations['enemy_deals_damage'] || 'Enemy deals {damage} damage!').replace('{damage}', enemyDamage);
     } else {
         const reducedDamage = Math.max(1, Math.floor(enemyDamage / 2));
         combat.player.health = Math.max(0, combat.player.health - reducedDamage);
-        message += ` Enemy deals ${reducedDamage} damage (reduced)!`;
+        message += ' ' + (translations['enemy_deals_reduced'] || 'Enemy deals {damage} damage (reduced)!').replace('{damage}', reducedDamage);
     }
     
     // Check if player defeated
     if (combat.player.health <= 0) {
-        showGameMessage('You were defeated! Returning as a frog...');
+        showGameMessage(translations['player_defeated'] || 'You were defeated! Returning as a frog...');
         
         // Reset character as frog
         const form = document.createElement('form');
@@ -1222,13 +1228,13 @@ function buyItem(emoji, price) {
     if (window.playerGold >= price) {
         // Check if inventory has space
         if (!animals || !animals[window.playerAnimal]) {
-            showGameMessage('Animal data not loaded yet!');
+            showGameMessage(translations['animal_data_not_loaded'] || 'Animal data not loaded yet!');
             return;
         }
         
         const animalData = animals[window.playerAnimal];
         if (window.inventory.length >= animalData.stats.inventory) {
-            showGameMessage('Inventory is full! Cannot buy more items.');
+            showGameMessage(translations['inventory_full_buy'] || 'Inventory is full! Cannot buy more items.');
             return;
         }
         
@@ -1242,7 +1248,8 @@ function buyItem(emoji, price) {
         // Update server and UI
         updateGoldAndInventoryInPlace();
     } else {
-        showGameMessage(`You need ${price} gold but only have ${window.playerGold} gold!`);
+        const template = translations['need_gold'] || 'You need {price} gold but only have {gold} gold!';
+        showGameMessage(template.replace('{price}', price).replace('{gold}', window.playerGold));
     }
 }
 
@@ -1514,13 +1521,13 @@ function craftItem(recipeIndex) {
     );
     
     if (!hasIngredients) {
-        showGameMessage("You don't have all the required ingredients!");
+        showGameMessage(translations['missing_ingredients'] || "You don't have all the required ingredients!");
         return;
     }
     
     // Check if inventory has space for new item
     if (window.inventory.length >= window.maxInventorySlots) {
-        showGameMessage("Inventory is full! Cannot craft more items.");
+        showGameMessage(translations['inventory_full_craft'] || 'Inventory is full! Cannot craft more items.');
         return;
     }
     
@@ -1535,7 +1542,8 @@ function craftItem(recipeIndex) {
     // Add crafted item
     window.inventory.push(recipe.result);
     
-    showGameMessage(`Successfully crafted ${recipe.name_local}!`);
+    const craftedMsg = (translations['crafted_success'] || 'Successfully crafted {item}!').replace('{item}', recipe.name_local);
+    showGameMessage(craftedMsg);
     updateGoldAndInventory();
     
     // Refresh crafting interface
@@ -1580,8 +1588,9 @@ function initializeMemoryGame(storyData) {
     // Shuffle the right side words
     const shuffledEnglish = [...pairs.map(p => p.english)].sort(() => Math.random() - 0.5);
     
+    const scoreTemplateInit = translations['score_attempts'] || 'Score: {score}/{total} | Attempts: {attempts}';
     gameDiv.innerHTML = `
-        <div class="memory-score">Score: ${score}/${pairs.length} | Attempts: ${attempts}</div>
+        <div class="memory-score">${scoreTemplateInit.replace('{score}', score).replace('{total}', pairs.length).replace('{attempts}', attempts)}</div>
         <div class="memory-matching-game">
             <div class="memory-left-column">
                 <h4>${translations['match_words'] || 'Match these words:'}</h4>
@@ -1675,7 +1684,7 @@ function checkMemoryMatch() {
         leftElement.onclick = null;
         rightElement.onclick = null;
         
-        showGameMessage('¡Correcto! Correct match!');
+        showGameMessage(translations['correct_match'] || 'Correct match!');
         
         // Check if game is complete
         if (state.score >= state.pairs.length) {
@@ -1687,7 +1696,7 @@ function checkMemoryMatch() {
         }
     } else {
         // Wrong match
-        showGameMessage('Try again! Intenta otra vez!');
+        showGameMessage(translations['try_again'] || 'Try again!');
         
         // Flash red briefly
         leftElement.style.background = 'rgba(255, 0, 0, 0.3)';
@@ -1707,8 +1716,9 @@ function checkMemoryMatch() {
     
     // Update score display
     const gameDiv = document.getElementById('memoryGame');
-    gameDiv.querySelector('.memory-score').textContent = 
-        `Score: ${state.score}/${state.pairs.length} | Attempts: ${state.attempts}`;
+    const scoreTemplate = translations['score_attempts'] || 'Score: {score}/{total} | Attempts: {attempts}';
+    gameDiv.querySelector('.memory-score').textContent =
+        scoreTemplate.replace('{score}', state.score).replace('{total}', state.pairs.length).replace('{attempts}', state.attempts);
 }
 
 function leaveMinigame() {
@@ -1737,7 +1747,7 @@ function displayWordQuiz(storyData) {
     window.currentWordQuiz = {
         pairs: storyData.pairs,
         index: 0,
-        success: storyData.success || 'Great job!'
+        success: storyData.success || (translations['great_job'] || 'Great job!')
     };
 
     showNextQuizWord();
@@ -1782,11 +1792,11 @@ function selectQuizOption(word) {
 
     const pair = state.pairs[state.index];
     if (word === pair.english) {
-        showGameMessage('Correct!');
+        showGameMessage(translations['correct_answer'] || 'Correct!');
         state.index++;
         setTimeout(showNextQuizWord, 800);
     } else {
-        showGameMessage('Try again!');
+        showGameMessage(translations['try_again'] || 'Try again!');
     }
 }
 

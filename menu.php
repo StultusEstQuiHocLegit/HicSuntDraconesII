@@ -76,7 +76,7 @@ $faction = $_COOKIE['hsd_faction'] ?? '';
 
                 <div class="settings-actions">
                     <button type="submit" class="save-btn" data-translate="save_settings">SAVE SETTINGS</button>
-                    <button type="submit" name="reset" value="1" class="reset-btn" data-translate="reset_character" onclick="return confirm('Are you sure you want to reset your character?')">RESET CHARACTER</button>
+                    <button type="submit" name="reset" value="1" class="reset-btn" data-translate="reset_character" onclick="return confirmReset()">RESET CHARACTER</button>
                 </div>
             </form>
         </main>
