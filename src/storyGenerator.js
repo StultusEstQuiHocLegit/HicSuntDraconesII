@@ -363,22 +363,25 @@ const wordquiz = {
 
 
 
-// Return as array of strings or objects as needed
-async function loadTemplates() {
-  return [
-    chapter1,
+// Determine which examples to inject into the prompt
+async function loadTemplates(chapter) {
+  const textExamples = [chapter1, intro, village, mountain, treasure];
+
+  const specialMap = {
     combat,
     crafting,
-    // dialogue,
-    // wordquiz,
-    // intro,
-    // village,
-    // mountain,
-    // puzzle,
-    // trader,
-    // treasure,
-    minigame
-  ];
+    dialogue,
+    wordquiz,
+    puzzle,
+    trader,
+    minigame,
+  };
+
+  if (specialMap[chapter]) {
+    return [specialMap[chapter]];
+  }
+
+  return textExamples;
 }
 
 // Get last 20 AI-generated texts from localStorage
@@ -410,17 +413,20 @@ function saveToContext(chapter, newText) {
 
 // Generate story using AI
 async function generateStory(userInput) {
-  const templates = await loadTemplates();
+  const templates = await loadTemplates(userInput);
   const context = getContextTexts();
 
   // Build the prompt for AI
+  const isSpecial = ['combat','crafting','dialogue','wordquiz','puzzle','trader','minigame'].includes(userInput);
   const prompt = `
 You are a story generator. Use the following examples as templates for your output format:
 ${templates.map((t, i) => `Example ${i + 1}:\n${JSON.stringify(t, null, 2)}`).join('\n\n')}
+Available chapters: chapter1, combat, crafting, dialogue, wordquiz, intro, village, mountain, puzzle, trader, treasure, minigame.
+${isSpecial ? '' : 'When creating a normal text card, provide five options and ensure one or two lead logically to special types such as combat, crafting, dialogue, wordquiz, puzzle, trader or minigame.'}
 Continue the story, keeping the style and format above. Here is the recent story context:
 ${context.join('\n')}
 User input: ${userInput}
-Please make sure to answer exactly in the same format as the examples provided, in the exact same JSON format, and ensure that the story continues logically from the last context.
+Please make sure to answer exactly in the same JSON format as the examples provided and ensure that the story continues logically from the last context.
   `;
 
   // Log the prompt sent to the AI
