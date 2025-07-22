@@ -11,6 +11,24 @@ const playerFaction = window.playerFaction;
 const inventory = window.inventory;
 const playerGold = window.playerGold;
 
+// Form validation for character creation
+function validateForm() {
+    const animalInput = document.getElementById('selectedAnimal');
+    const factionInput = document.querySelector('input[name="faction"]:checked');
+
+    if (!animalInput || !animalInput.value) {
+        alert('Please select an animal companion!');
+        return false;
+    }
+
+    if (!factionInput) {
+        alert('Please choose a faction!');
+        return false;
+    }
+
+    return true;
+}
+
 document.addEventListener('DOMContentLoaded', async function() {
     if (document.getElementById('storyText')) {
         await loadAnimalsForGame();
@@ -29,25 +47,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         setupInventory();
         createDropZone();
     }
-
-        
-        // Form validation
-        function validateForm() {
-            const animalInput = document.getElementById('selectedAnimal');
-            const factionInput = document.querySelector('input[name="faction"]:checked');
-            
-            if (!animalInput || !animalInput.value) {
-                alert('Please select an animal companion!');
-                return false;
-            }
-            
-            if (!factionInput) {
-                alert('Please choose a faction!');
-                return false;
-            }
-            
-            return true;
-        }
 });
 
 import { generateStory, saveChoice } from '../src/storyGenerator.js';
@@ -1945,3 +1944,4 @@ window.loadTranslations = loadTranslations;
 window.loadAnimals = loadAnimals;
 window.loadAnimalsForMenu = loadAnimalsForMenu;
 window.loadAnimalsForGame = loadAnimalsForGame;
+window.validateForm = validateForm;
