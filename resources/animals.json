@@ -208,5 +208,20 @@
             "defense": 3,
             "inventory": 2
         }
+    },
+    "ape": {
+        "emoji": "🦍",
+        "names": {
+            "english": "Ape",
+            "spanish": "Simio",
+            "french": "Singe"
+        },
+        "stats": {
+            "speed": 4,
+            "life": 5,
+            "attack": 3,
+            "defense": 3,
+            "inventory": 3
+        }
     }
 }
