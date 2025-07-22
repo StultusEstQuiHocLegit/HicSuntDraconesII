@@ -109,5 +109,16 @@ $current_language = $_COOKIE['hsd_language'] ?? 'english';
     </div>
 
     <script type="module" src="js/main.js"></script>
+    <script>
+        window.currentLanguage = '<?php echo $current_language; ?>';
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.currentLanguage !== 'english') {
+                loadTranslations();
+            }
+            if (document.getElementById('animalsGrid')) {
+                loadAnimals();
+            }
+        });
+    </script>
 </body>
 </html>
