@@ -29,13 +29,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         setupInventory();
         createDropZone();
     }
-    window.currentLanguage = '<?php echo $current_language; ?>';
-        if (window.currentLanguage !== 'english') {
-            loadTranslations();
-        }
-        if (document.getElementById('animalsGrid')) {
-            loadAnimals();
-        }
+
         
         // Form validation
         function validateForm() {
@@ -1949,3 +1943,5 @@ function shuffleArray(arr) {
 // Expose certain functions for non-module scripts (e.g., index.php)
 window.loadTranslations = loadTranslations;
 window.loadAnimals = loadAnimals;
+window.loadAnimalsForMenu = loadAnimalsForMenu;
+window.loadAnimalsForGame = loadAnimalsForGame;
