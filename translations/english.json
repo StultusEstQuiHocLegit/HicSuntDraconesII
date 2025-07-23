@@ -27,6 +27,8 @@
     "beginner": "Beginner",
     "elementary": "Elementary",
     "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "expert": "Expert",
     "settings": "Settings",
     "crafting_forge": "Crafting Forge",
     "needs": "Needs",
@@ -63,6 +65,7 @@
     "enemy_deals_reduced": "Enemy deals {damage} damage (reduced)!",
     "player_defeated": "You were defeated! Returning as a frog...",
     "animal_data_not_loaded": "Animal data not loaded yet!",
+    "custom_action_placeholder": "... or enter your own action idea here",
     "inventory_full_buy": "Inventory is full! Cannot buy more items.",
     "need_gold": "You need {price} gold but only have {gold} gold!",
     "missing_ingredients": "You don't have all the required ingredients!",
@@ -2091,7 +2094,6 @@
     "windows": "windows",
     "zone": "zone",
     "accident": "accident",
-    "advanced": "advanced",
     "alternative": "alternative",
     "anywhere": "anywhere",
     "articles": "articles",
@@ -2780,7 +2782,6 @@
     "employment": "employment",
     "exclusive": "exclusive",
     "excuse": "excuse",
-    "expert": "expert",
     "frequently": "frequently",
     "golf": "golf",
     "grace": "grace",
@@ -3129,6 +3130,5 @@
     "shower": "shower",
     "solutions": "solutions",
     "sons": "sons",
-    "stations": "stations",
-    "custom_action_placeholder": "... or enter your own action idea here"
+    "stations": "stations"
 }
