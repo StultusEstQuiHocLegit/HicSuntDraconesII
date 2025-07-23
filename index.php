@@ -2,7 +2,7 @@
 session_start();
 
 // Check if user has completed setup
-if (isset($_COOKIE['hsd_language']) && isset($_COOKIE['hsd_animal']) && isset($_COOKIE['hsd_faction'])) {
+if (isset($_COOKIE['hsd_language']) && isset($_COOKIE['hsd_level']) && isset($_COOKIE['hsd_animal']) && isset($_COOKIE['hsd_faction'])) {
     header('Location: game.php');
     exit;
 }
@@ -12,6 +12,11 @@ if ($_POST) {
     if (isset($_POST['language'])) {
         setcookie('hsd_language', $_POST['language'], time() + (10 * 365 * 24 * 60 * 60), '/'); // 10 years
         $_COOKIE['hsd_language'] = $_POST['language'];
+    }
+
+    if (isset($_POST['level'])) {
+        setcookie('hsd_level', $_POST['level'], time() + (10 * 365 * 24 * 60 * 60), '/');
+        $_COOKIE['hsd_level'] = $_POST['level'];
     }
     
     if (isset($_POST['animal']) && isset($_POST['faction']) && !empty($_POST['animal'])) {
@@ -25,6 +30,7 @@ if ($_POST) {
 }
 
 $current_language = $_COOKIE['hsd_language'] ?? 'english';
+$current_level = $_COOKIE['hsd_level'] ?? 'beginner';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +66,21 @@ $current_language = $_COOKIE['hsd_language'] ?? 'english';
                                 <span data-translate="french">FRENCH</span>
                             </button>
                         </div>
+                    </form>
+                </div>
+            <?php elseif (!isset($_COOKIE['hsd_level'])): ?>
+                <!-- Level Selection Step -->
+                <div class="setup-step">
+                    <h2 data-translate="choose_level">Choose Your Learning Level</h2>
+                    <form method="POST" class="level-form">
+                        <select name="level" class="setting-select">
+                            <option value="beginner" data-translate="beginner">Beginner</option>
+                            <option value="elementary" data-translate="elementary">Elementary</option>
+                            <option value="intermediate" data-translate="intermediate">Intermediate</option>
+                            <option value="advanced" data-translate="advanced">Advanced</option>
+                            <option value="expert" data-translate="expert">Expert</option>
+                        </select>
+                        <button type="submit" class="start-btn" data-translate="continue">CONTINUE</button>
                     </form>
                 </div>
             <?php else: ?>
@@ -111,6 +132,7 @@ $current_language = $_COOKIE['hsd_language'] ?? 'english';
     <script type="module" src="js/main.js"></script>
     <script>
         window.currentLanguage = '<?php echo $current_language; ?>';
+        window.currentLevel = '<?php echo $current_level; ?>';
         document.addEventListener('DOMContentLoaded', function () {
             if (window.currentLanguage !== 'english') {
                 loadTranslations();
