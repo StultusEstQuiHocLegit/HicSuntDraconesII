@@ -1284,16 +1284,20 @@ function combatAction(action) {
     // Check if player defeated
     if (combat.player.health <= 0) {
         showGameMessage(translations['player_defeated'] || 'You were defeated! Returning as a frog...');
-        
+
+        // Clear inventory immediately on defeat
+        window.inventory = [];
+        updateInventoryDisplay();
+
         // Reset character as frog
         const form = document.createElement('form');
         form.method = 'POST';
         form.style.display = 'none';
-        
+
         const actionInput = document.createElement('input');
         actionInput.name = 'action';
         actionInput.value = 'reset_character';
-        
+
         form.appendChild(actionInput);
         document.body.appendChild(form);
         form.submit();
