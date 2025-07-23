@@ -3124,5 +3124,6 @@
     "shower": "shower",
     "solutions": "solutions",
     "sons": "sons",
-    "stations": "stations"
+    "stations": "stations",
+    "custom_action_placeholder": "... or enter your own action idea here"
 }

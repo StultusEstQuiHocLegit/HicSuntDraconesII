@@ -3124,5 +3124,6 @@
     "shower": "douche",
     "solutions": "solutions",
     "sons": "fils",
-    "stations": "stations"
+    "stations": "stations",
+    "custom_action_placeholder": "... ou saisissez ici votre propre idée d'action"
 }

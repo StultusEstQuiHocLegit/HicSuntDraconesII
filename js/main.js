@@ -548,6 +548,26 @@ function displayStoryContent() {
         }).join('');
 
         optionsDiv.innerHTML = optionsHTML;
+
+        if (!storyData.type) {
+            const placeholder = translations['custom_action_placeholder'] || '... or enter your own action idea here';
+            const sendLabel = translations['send'] || 'Send';
+            optionsDiv.innerHTML += `
+                <div class="custom-action">
+                    <textarea id="customActionInput" class="custom-action-input" placeholder="${placeholder}" rows="2"></textarea>
+                    <button id="customActionSend" class="custom-action-send" title="${sendLabel}">➤</button>
+                </div>`;
+
+            const sendBtn = document.getElementById('customActionSend');
+            const inputEl = document.getElementById('customActionInput');
+            sendBtn.addEventListener('click', submitCustomAction);
+            inputEl.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    submitCustomAction();
+                }
+            });
+        }
     }
 }
 
@@ -1939,9 +1959,21 @@ function shuffleArray(arr) {
         .map(({ value }) => value);
 }
 
+function submitCustomAction() {
+    const inputEl = document.getElementById('customActionInput');
+    if (!inputEl) return;
+    const action = inputEl.value.trim();
+    if (action === '') return;
+
+    saveChoice(action);
+    inputEl.value = '';
+    loadStoryContent(action);
+}
+
 // Expose certain functions for non-module scripts (e.g., index.php)
 window.loadTranslations = loadTranslations;
 window.loadAnimals = loadAnimals;
 window.loadAnimalsForMenu = loadAnimalsForMenu;
 window.loadAnimalsForGame = loadAnimalsForGame;
 window.validateForm = validateForm;
+window.submitCustomAction = submitCustomAction;
