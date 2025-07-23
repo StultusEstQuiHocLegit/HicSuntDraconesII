@@ -27,6 +27,8 @@
     "beginner": "Débutant",
     "elementary": "Élémentaire",
     "intermediate": "Intermédiaire",
+    "advanced": "Avancé",
+    "expert": "Expert",
     "settings": "Paramètres",
     "crafting_forge": "Forge d'artisanat",
     "needs": "Nécessite",
@@ -63,6 +65,7 @@
     "enemy_deals_reduced": "L'ennemi inflige {damage} dégâts (réduit) !",
     "player_defeated": "Vous avez été vaincu ! Retour sous forme de grenouille...",
     "animal_data_not_loaded": "Données des animaux non encore chargées !",
+    "custom_action_placeholder": "... ou saisissez ici votre propre idée d'action",
     "inventory_full_buy": "Inventaire plein ! Impossible d'acheter plus d'objets.",
     "need_gold": "Vous avez besoin de {price} or mais n'avez que {gold} or !",
     "missing_ingredients": "Vous n'avez pas tous les ingrédients requis !",
@@ -2091,7 +2094,6 @@
     "windows": "fenêtre",
     "zone": "zone",
     "accident": "accident",
-    "advanced": "avancé",
     "alternative": "alternative",
     "anywhere": "n'importe où",
     "articles": "articles",
@@ -2780,7 +2782,6 @@
     "employment": "emploi",
     "exclusive": "exclusif",
     "excuse": "excuse",
-    "expert": "expert",
     "frequently": "fréquemment",
     "golf": "golf",
     "grace": "grâce",
@@ -3129,6 +3130,5 @@
     "shower": "douche",
     "solutions": "solutions",
     "sons": "fils",
-    "stations": "stations",
-    "custom_action_placeholder": "... ou saisissez ici votre propre idée d'action"
+    "stations": "stations"
 }
