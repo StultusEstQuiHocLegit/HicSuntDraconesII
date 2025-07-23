@@ -576,6 +576,25 @@ function displayStoryContent() {
 function setupKeyboardNavigation() {
     document.addEventListener('keydown', function(event) {
         const key = event.key;
+
+        const activeEl = document.activeElement;
+        const customInput = document.getElementById('customActionInput');
+        const isInputFocused = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA');
+
+        // If the custom action textarea is focused, ignore global shortcuts
+        if (customInput && activeEl === customInput) {
+            return;
+        }
+
+        // If the textarea exists, no input is focused and the user starts typing letters,
+        // automatically focus the textarea and insert the typed character
+        if (customInput && !isInputFocused && key.length === 1 && /^[a-zA-Z]$/.test(key)) {
+            const pos = customInput.value.length;
+            customInput.focus();
+            customInput.setRangeText(key, pos, pos, 'end');
+            event.preventDefault();
+            return;
+        }
         
         // Handle combat controls
         if (window.currentCombat) {
