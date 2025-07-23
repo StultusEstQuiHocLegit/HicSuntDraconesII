@@ -27,6 +27,8 @@
     "beginner": "Principiante",
     "elementary": "Elemental",
     "intermediate": "Intermedio",
+    "advanced": "Avanzado",
+    "expert": "Experto",
     "settings": "Configuración",
     "crafting_forge": "Forja de Creación",
     "needs": "Necesita",
@@ -63,6 +65,7 @@
     "enemy_deals_reduced": "¡El enemigo inflige {damage} de daño (reducido)!",
     "player_defeated": "¡Fuiste derrotado! Volviendo como rana...",
     "animal_data_not_loaded": "¡Datos de animales aún no cargados!",
+    "custom_action_placeholder": "... o introduce tu propia idea de acción aquí",
     "inventory_full_buy": "¡Inventario lleno! No puedes comprar más objetos.",
     "need_gold": "Necesitas {price} de oro pero solo tienes {gold} de oro!",
     "missing_ingredients": "¡No tienes todos los ingredientes necesarios!",
@@ -2091,7 +2094,6 @@
     "windows": "Windows",
     "zone": "zona",
     "accident": "accidente",
-    "advanced": "avanzado",
     "alternative": "alternativa",
     "anywhere": "en cualquier lugar",
     "articles": "artículos",
@@ -2780,7 +2782,6 @@
     "employment": "empleo",
     "exclusive": "exclusivo",
     "excuse": "disculpar",
-    "expert": "experto",
     "frequently": "frecuentemente",
     "golf": "golf",
     "grace": "gracia",
@@ -3129,6 +3130,5 @@
     "shower": "ducha",
     "solutions": "soluciones",
     "sons": "hijos",
-    "stations": "estaciones",
-    "custom_action_placeholder": "... o introduce tu propia idea de acción aquí"
+    "stations": "estaciones"
 }
