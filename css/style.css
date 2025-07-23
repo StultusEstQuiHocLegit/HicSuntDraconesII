@@ -1417,7 +1417,12 @@ body {
     .option-item {
         padding: 0.8rem;
     }
-    
+
+    /* Hide feedback link to prevent overlap with inventory */
+    #feedbackLink {
+        display: none;
+    }
+
 .option-text {
     font-size: 0.9rem;
 }
