@@ -14,11 +14,23 @@ $level = $_COOKIE['hsd_level'] ?? 'beginner';
 $inventory = json_decode($_COOKIE['hsd_inventory'] ?? '[]', true);
 $gold = $_COOKIE['hsd_gold'] ?? 10;
 
+// Load animal data to determine inventory capacity
+$animalsData = json_decode(file_get_contents('resources/animals.json'), true);
+$maxSlots = $animalsData[$animal]['stats']['inventory'] ?? 5;
+
+// Trim excess items if inventory exceeds capacity
+if (count($inventory) > $maxSlots) {
+    $inventory = array_slice($inventory, 0, $maxSlots);
+    setcookie('hsd_inventory', json_encode($inventory), time() + (10 * 365 * 24 * 60 * 60), '/');
+}
+
 // Handle game actions
 if ($_POST && isset($_POST['action'])) {
     if ($_POST['action'] === 'add_item' && isset($_POST['item'])) {
-        $inventory[] = $_POST['item'];
-        setcookie('hsd_inventory', json_encode($inventory), time() + (10 * 365 * 24 * 60 * 60), '/');
+        if (count($inventory) < $maxSlots) {
+            $inventory[] = $_POST['item'];
+            setcookie('hsd_inventory', json_encode($inventory), time() + (10 * 365 * 24 * 60 * 60), '/');
+        }
     } elseif ($_POST['action'] === 'remove_item' && isset($_POST['index'])) {
         $index = (int)$_POST['index'];
         if (isset($inventory[$index])) {
@@ -28,6 +40,7 @@ if ($_POST && isset($_POST['action'])) {
     } elseif ($_POST['action'] === 'reorder_inventory' && isset($_POST['inventory'])) {
         $newInventory = json_decode($_POST['inventory'], true);
         if (is_array($newInventory)) {
+            $newInventory = array_slice($newInventory, 0, $maxSlots);
             setcookie('hsd_inventory', json_encode($newInventory), time() + (10 * 365 * 24 * 60 * 60), '/');
         }
     } elseif ($_POST['action'] === 'update_gold' && isset($_POST['gold'])) {
@@ -38,6 +51,7 @@ if ($_POST && isset($_POST['action'])) {
         if (isset($_POST['inventory'])) {
             $newInventory = json_decode($_POST['inventory'], true);
             if (is_array($newInventory)) {
+                $newInventory = array_slice($newInventory, 0, $maxSlots);
                 setcookie('hsd_inventory', json_encode($newInventory), time() + (10 * 365 * 24 * 60 * 60), '/');
             }
         }
@@ -112,6 +126,7 @@ if ($_POST && isset($_POST['action'])) {
         window.inventory = <?php echo json_encode($inventory); ?>;
         window.playerGold = <?php echo $gold; ?>;
         window.currentLevel = '<?php echo $level; ?>';
+        window.maxInventorySlots = <?php echo $maxSlots; ?>;
     </script>
     <!-- Loading spinner HTML goes here, just before </body> -->
     <div id="loading-spinner" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;">

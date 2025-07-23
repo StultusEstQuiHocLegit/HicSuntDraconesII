@@ -186,6 +186,10 @@ async function loadAnimalsForGame() {
             console.warn('Player animal not found:', window.playerAnimal);
             window.playerAnimal = Object.keys(animals)[0];
         }
+
+        // Set max inventory slots based on current animal and trim excess items
+        window.maxInventorySlots = animals[window.playerAnimal].stats.inventory;
+        trimInventoryToCapacity();
     } catch (error) {
         console.error('Error loading animals:', error);
     }
@@ -972,6 +976,16 @@ function createItemTooltip(item) {
     return tooltip;
 }
 
+// Ensure inventory array does not exceed the allowed number of slots
+function trimInventoryToCapacity() {
+    window.inventory = window.inventory || [];
+    const max = window.maxInventorySlots || 5;
+    if (window.inventory.length > max) {
+        window.inventory = window.inventory.slice(0, max);
+        updateInventoryViaForm(window.inventory);
+    }
+}
+
 // Setup inventory system with drag and drop
 function setupInventory() {
     const inventorySlots = document.getElementById('inventorySlots');
@@ -990,6 +1004,8 @@ function updateInventoryDisplay() {
         console.log('Animals data not loaded, using default inventory size');
         // Use a default inventory size if animals data isn't loaded
         const maxSlots = 5; // default
+        window.maxInventorySlots = maxSlots;
+        trimInventoryToCapacity();
         const currentInventory = window.inventory || [];
         
         inventorySlots.innerHTML = '';
@@ -1013,6 +1029,8 @@ function updateInventoryDisplay() {
     
     const animalData = animals[window.playerAnimal];
     const maxSlots = animalData.stats.inventory;
+    window.maxInventorySlots = maxSlots;
+    trimInventoryToCapacity();
     const currentInventory = window.inventory || [];
     
     inventorySlots.innerHTML = '';
