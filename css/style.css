@@ -1476,3 +1476,41 @@ body {
     border-color: var(--accent-blue);
     background: rgba(74, 158, 255, 0.2);
 }
+
+/* Custom Action Input */
+.custom-action {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+}
+
+.custom-action-input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: rgba(26, 21, 17, 0.8);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.custom-action-input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+.custom-action-send {
+    background: rgba(61, 47, 35, 0.8);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.custom-action-send:hover {
+    border-color: var(--accent-blue);
+    background: rgba(74, 158, 255, 0.2);
+}
