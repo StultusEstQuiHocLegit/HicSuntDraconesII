@@ -12,6 +12,9 @@ if ($_POST) {
     if (isset($_POST['language'])) {
         setcookie('hsd_language', $_POST['language'], time() + (10 * 365 * 24 * 60 * 60), '/');
     }
+    if (isset($_POST['level'])) {
+        setcookie('hsd_level', $_POST['level'], time() + (10 * 365 * 24 * 60 * 60), '/');
+    }
     if (isset($_POST['reset'])) {
         setcookie('hsd_language', '', time() - 3600, '/');
         setcookie('hsd_animal', '', time() - 3600, '/');
@@ -28,6 +31,7 @@ if ($_POST) {
 $language = $_COOKIE['hsd_language'] ?? 'english';
 $animal = $_COOKIE['hsd_animal'] ?? '';
 $faction = $_COOKIE['hsd_faction'] ?? '';
+$level = $_COOKIE['hsd_level'] ?? 'beginner';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +56,17 @@ $faction = $_COOKIE['hsd_faction'] ?? '';
                     <select name="language" class="setting-select">
                         <option value="spanish" <?php echo $language === 'spanish' ? 'selected' : ''; ?> data-translate="spanish">Spanish</option>
                         <option value="french" <?php echo $language === 'french' ? 'selected' : ''; ?> data-translate="french">French</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <h3 data-translate="level_settings">Learning Level</h3>
+                    <select name="level" class="setting-select">
+                        <option value="beginner" <?php echo $level === 'beginner' ? 'selected' : ''; ?> data-translate="beginner">Beginner</option>
+                        <option value="elementary" <?php echo $level === 'elementary' ? 'selected' : ''; ?> data-translate="elementary">Elementary</option>
+                        <option value="intermediate" <?php echo $level === 'intermediate' ? 'selected' : ''; ?> data-translate="intermediate">Intermediate</option>
+                        <option value="advanced" <?php echo $level === 'advanced' ? 'selected' : ''; ?> data-translate="advanced">Advanced</option>
+                        <option value="expert" <?php echo $level === 'expert' ? 'selected' : ''; ?> data-translate="expert">Expert</option>
                     </select>
                 </div>
 
@@ -86,6 +101,7 @@ $faction = $_COOKIE['hsd_faction'] ?? '';
     <script>
         window.currentLanguage = '<?php echo $language; ?>';
         window.currentAnimal = '<?php echo $animal; ?>';
+        window.currentLevel = '<?php echo $level; ?>';
         
         document.addEventListener('DOMContentLoaded', function() {
             loadTranslations();

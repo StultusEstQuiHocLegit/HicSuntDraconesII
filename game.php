@@ -2,7 +2,7 @@
 session_start();
 
 // Redirect if setup not completed
-if (!isset($_COOKIE['hsd_language']) || !isset($_COOKIE['hsd_animal']) || !isset($_COOKIE['hsd_faction'])) {
+if (!isset($_COOKIE['hsd_language']) || !isset($_COOKIE['hsd_level']) || !isset($_COOKIE['hsd_animal']) || !isset($_COOKIE['hsd_faction'])) {
     header('Location: index.php');
     exit;
 }
@@ -10,6 +10,7 @@ if (!isset($_COOKIE['hsd_language']) || !isset($_COOKIE['hsd_animal']) || !isset
 $language = $_COOKIE['hsd_language'];
 $animal = $_COOKIE['hsd_animal'];
 $faction = $_COOKIE['hsd_faction'];
+$level = $_COOKIE['hsd_level'] ?? 'beginner';
 $inventory = json_decode($_COOKIE['hsd_inventory'] ?? '[]', true);
 $gold = $_COOKIE['hsd_gold'] ?? 10;
 
@@ -110,6 +111,7 @@ if ($_POST && isset($_POST['action'])) {
         window.playerFaction = '<?php echo $faction; ?>';
         window.inventory = <?php echo json_encode($inventory); ?>;
         window.playerGold = <?php echo $gold; ?>;
+        window.currentLevel = '<?php echo $level; ?>';
     </script>
     <!-- Loading spinner HTML goes here, just before </body> -->
     <div id="loading-spinner" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;">

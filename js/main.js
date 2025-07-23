@@ -10,6 +10,7 @@ const playerAnimal = window.playerAnimal;
 const playerFaction = window.playerFaction;
 const inventory = window.inventory;
 const playerGold = window.playerGold;
+const currentLevel = window.currentLevel;
 
 // Form validation for character creation
 function validateForm() {
@@ -420,7 +421,7 @@ function hideLoading() {
 async function loadStoryContent(userInput = 'intro') {
     showLoading();
     try {
-        const aiStory = await generateStory(userInput, currentLanguage);
+        const aiStory = await generateStory(userInput, currentLanguage, currentLevel);
         // Fix: Only parse if it's a string
         if (typeof aiStory === 'string') {
             currentStory = JSON.parse(aiStory);

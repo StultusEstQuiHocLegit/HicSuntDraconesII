@@ -434,14 +434,14 @@ function saveToContext(chapter, newText) {
 // }
 
 // Generate story using AI
-async function generateStory(userInput, language = 'spanish') {
+async function generateStory(userInput, language = 'spanish', level = 'beginner') {
   const templates = await loadTemplates(userInput, language);
   const context = getContextTexts();
 
   // Build the prompt for AI
   const isSpecial = ['combat','crafting','dialogue','wordquiz','puzzle','trader','minigame'].includes(userInput);
   const prompt = `
-You are a story generator. Respond exclusively in ${language}. Use the following examples as templates for your output format:
+You are a story generator. Respond exclusively in ${language}. The player's language level is ${level}. Adjust the vocabulary and complexity accordingly. Use the following examples as templates for your output format:
 ${templates.map((t, i) => `Example ${i + 1}:\n${JSON.stringify(t, null, 2)}`).join('\n\n')}
 Available chapters: chapter1, combat, crafting, dialogue, wordquiz, intro, village, mountain, puzzle, trader, treasure, minigame.
 ${isSpecial ? '' : 'When creating a normal text card, provide five options and ensure one or two lead logically to special types such as combat, crafting, dialogue, wordquiz, puzzle, trader or minigame.'}
